@@ -1,3 +1,10 @@
+"""
+Financial Insight Generator
+Loads loan portfolio data, computes loss rates,
+and generates constrained executive risk narratives via Claude API.
+Author: Eswar Gutlapalli
+"""
+
 import anthropic
 from dotenv import load_dotenv
 import pandas as pd
