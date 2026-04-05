@@ -1,0 +1,17 @@
+segment,quarter,balance_millions,losses_millions
+Auto,Q1,1250,18.75
+Auto,Q2,1310,22.27
+Auto,Q3,1280,24.32
+Auto,Q4,1350,28.35
+Credit Card,Q1,890,26.70
+Credit Card,Q2,920,30.36
+Credit Card,Q3,905,31.68
+Credit Card,Q4,960,35.52
+Mortgage,Q1,4200,12.60
+Mortgage,Q2,4350,13.05
+Mortgage,Q3,4100,12.30
+Mortgage,Q4,4500,15.75
+Personal Loan,Q1,620,18.60
+Personal Loan,Q2,650,21.45
+Personal Loan,Q3,670,23.45
+Personal Loan,Q4,700,26.60
