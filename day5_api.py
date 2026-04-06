@@ -60,19 +60,3 @@ message = client.messages.create(
 
 print("--- Portfolio Credit Risk Summary ---")
 print(message.content[0].text)
-
-# Day 5 reflection
-# What I learned: How to connect/call to Anthropic LLM, how to build a promt with data, and how to update the prompt for a more complete analysis
-# What confused me: iterrows() method and why was it used instead of items()
-# One question I have: The same prompt outputs variation in response, is it possibel to keep the narrative same for the same prompt
-# Key insight: LLMs will derive metrics beyond provided data
-# Solution: explicit constraints in prompt — tell model what NOT to do
-# Production rule: always validate any number in AI output against source data
-
-# Notes:
-# # items() — for iterating key:value pairs in a Series or dict
-# # iterrows() — for iterating rows in a DataFrame
-# The difference is the data structure. `avg_by_segment` is a one-dimensional Series — one value per segment. `q4` is a two-dimensional DataFrame — multiple columns per row. You need `iterrows()` when you need to access multiple columns from the same row, like `row['segment']` and `row['loss_rate']` simultaneously.
-# Temperature controls how creative vs deterministic the model's responses are. Higher temperature = more variation. Lower = more consistent
-# For a risk reporting tool, low temperature is correct — you want reliability, not creativity. For a brainstorming tool, you'd want higher temperature.
-# Important about how LLMs work — even at low temperature, they're not deterministic like a calculator. They're probabilistic. You can constrain the variation but not eliminate it entirely. 
