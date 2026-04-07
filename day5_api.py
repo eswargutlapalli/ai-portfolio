@@ -14,23 +14,23 @@ load_dotenv()
 client = anthropic.Anthropic()
 
 # --- Step 1: load & summarize data ---
-df = pd.read_csv('data/loan_data.csv')
-df['loss_rate'] = df['losses_millions'] / df['balance_millions'] * 100
+df = pd.read_csv("data/loan_data.csv")
+df["loss_rate"] = df["losses_millions"] / df["balance_millions"] * 100
 
-avg_by_segment = df.groupby('segment')['loss_rate'].mean().round(2)
-q4 = df[df['quarter'] == 'Q4'].sort_values('loss_rate', ascending=False)
-total_balance = df['balance_millions'].sum()
+avg_by_segment = df.groupby("segment")["loss_rate"].mean().round(2)
+q4 = df[df["quarter"] == "Q4"].sort_values("loss_rate", ascending=False)
+total_balance = df["balance_millions"].sum()
 
 # Step 2: build the prompt from real data ---
 summary = ""
 for seg, rate in avg_by_segment.items():
-    summary += f'{seg}: {rate}% average loss rate\n'
+    summary += f"{seg}: {rate}% average loss rate\n"
 
 q4_summary = ""
 for _, row in q4.iterrows():
-    q4_summary += f'{row['segment']} : {row['loss_rate']:.2f}% in Q4\n'
+    q4_summary += f"{row["segment"]} : {row["loss_rate"]:.2f}% in Q4\n"
 
-prompt = f'''
+prompt = f"""
 You are a credit risk analyst. Based on the following loan portfolio data, write a concise 5-sentence executive summary highlighting key risks and trends.
 
 Total portfolio balance:
@@ -47,10 +47,10 @@ Important constraints:
 - Do not calculate, derive, or infer any additional metrics
 - Do not compute percentage changes, ratios, or comparisons not present in the data
 - If you reference a number, it must appear exactly in the data provided
-'''
+"""
 
 message = client.messages.create(
-    model = 'claude-sonnet-4-6',
+    model = "claude-sonnet-4-6",
     max_tokens = 1024,
     temperature=0.1,     # 0 = deterministic, 1 = creative, default is ~1
     messages = [
