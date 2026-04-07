@@ -4,16 +4,18 @@ Loads loan portfolio data, computes loss rates,
 and generates constrained executive risk narratives via Claude API.
 Author: Eswar Gutlapalli
 """
-
+import os
 import anthropic
 from dotenv import load_dotenv
 import pandas as pd
+import streamlit as st
 
 load_dotenv()
 
 def generate_insights(df):
 
-    client = anthropic.Anthropic()
+    api_key = st.secrets.get("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_API_KEY")
+    client = anthropic.Anthropic(api_key=api_key)
 
     df["loss_rate"] = df["losses_millions"] / df["balance_millions"] * 100
 

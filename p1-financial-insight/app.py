@@ -3,6 +3,7 @@ app.py
 Streamlit UI for the Financial Insight Generator.
 Accepts financial data input and returns Claude-powered insights.
 """
+
 import streamlit as st
 import pandas as pd
 from insight_generator import generate_insights
