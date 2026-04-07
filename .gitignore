@@ -5,3 +5,4 @@ __pycache__/
 mentor_notes.md
 EG_Notes.md
 DailyReflection_Notes.md
+*.pyc
