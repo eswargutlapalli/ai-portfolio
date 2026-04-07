@@ -37,4 +37,7 @@ turning raw portfolio data into executive narratives in seconds.
    streamlit run app.py
 
 ## Sample output
-   Refer to screenshots
+   Refer to screenshot 
+   or
+   https://eg-ai-portfolio-p1-insight.streamlit.app
+   
