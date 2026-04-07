@@ -18,26 +18,24 @@ To demonstrate how domain expertise in credit risk analytics
 can be combined with LLMs to automate insight generation — 
 turning raw portfolio data into executive narratives in seconds.
 
+## Key technical decisions
+- Constrained prompts to prevent derived calculations
+- Temperature tuned to X for output consistency
+
 ## How to run it
 
 1. Clone the repo
    git clone https://github.com/eswargutlapalli/ai-portfolio.git
 
 2. Install dependencies
-   pip install anthropic python-dotenv pandas
+   pip install anthropic python-dotenv pandas streamlit
 
 3. Add your API key
    Create a .env file with: ANTHROPIC_API_KEY=your_key_here
 
 4. Run
-   python day5_api.py
+   streamlit run app.py
 
 ## Sample output
-Given loan portfolio data across 4 segments and 4 quarters, 
-Claude generated this executive summary:
-
-"The $28,655M loan portfolio presents elevated and accelerating 
-risk in the unsecured lending segments. Personal Loans and Credit 
-Cards carry annual average loss rates of 3.4% and 3.38% 
-respectively, with Q4 rates climbing to 3.80% and 3.70%..."
-
+   Refer to screenshots or Click the link below
+   
