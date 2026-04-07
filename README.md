@@ -37,5 +37,4 @@ turning raw portfolio data into executive narratives in seconds.
    streamlit run app.py
 
 ## Sample output
-   Refer to screenshots or Click the link below
-   
+   Refer to screenshots
