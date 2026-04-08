@@ -4,6 +4,7 @@ Author: Eswar Gutlapalli
 """
 
 import os
+import time
 import anthropic
 import streamlit as st
 from dotenv import load_dotenv 
@@ -19,19 +20,32 @@ def synthesize(query: str, chunks: list) -> str:
         api_key = os.getenv("ANTHROPIC_API_KEY")
     client = anthropic.Anthropic(api_key=api_key)
 
-    message = client.messages.create(
-        model = "claude-sonnet-4-6",
-        max_tokens = 1024,
-        temperature=0.1,
-        system="""You are a credit risk analyst. Write a concise 3-sentence executive summary.
-        Use only the context provided. Do not infer facts not present.
-        If information is unavailable, state 'insufficient context'.""",
-        messages=[
-            {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
-        ]
-    )
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            message = client.messages.create(
+                model = "claude-sonnet-4-6",
+                max_tokens = 1024,
+                temperature=0.1,
+                system="""You are a credit risk analyst. Write a concise 3-sentence executive summary.
+                Use only the context provided. Do not infer facts not present.
+                If information is unavailable, state 'insufficient context'.""",
+                messages=[
+                    {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
+                ]
+            )
 
-    return message.content[0].text
+            return message.content[0].text
+        
+        except anthropic.APIStatusError as e:
+            if e.status_code == 529:
+                wait = 2 ** attempt     #1s, 2s, 4s
+                print(f"Claude overloaded. Retrying in {wait}s... (attempt {attempt + 1}/{max_retries})")
+                time.sleep(wait)
+            else:
+                raise       # re-raise if it's a different error
+
+    return "Claude is currently overloaded. Please try again in a moment."
 
 if __name__ == "__main__":
     from rag.embedder import build_index
