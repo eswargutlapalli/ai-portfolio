@@ -13,7 +13,10 @@ load_dotenv()
 def synthesize(query: str, chunks: list) -> str:
     context = "\n\n".join([chunk.page_content for chunk in chunks])
 
-    api_key = os.getenv("ANTHROPIC_API_KEY")
+    try:
+        api_key = st.secrets.get("ANTHROPIC_API_KEY") 
+    except Exception:
+        api_key = os.getenv("ANTHROPIC_API_KEY")
     client = anthropic.Anthropic(api_key=api_key)
 
     message = client.messages.create(
