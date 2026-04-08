@@ -6,25 +6,6 @@ Build Index function -
 Author: Eswar Gutlapalli
 """
 
-# from langchain_community.vectorstores import FAISS
-# from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-# def build_index(documents: list[str], embeddings):
-#     splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-#     chunks = splitter.create_documents(documents)
-#     return FAISS.from_documents(chunks, embeddings)
-
-# if __name__ == "__main__":
-#     sample_docs = [
-#         "Midwest region showed 12% increase in auto loan defaults in Q3.",
-#         "Commercial real estate losses concentrated in urban markets.",
-#         "Credit card delinquencies rose among 25-34 age group."
-#     ]
-#     print("Building index...")
-#     # passing None for embeddings for now — we'll wire real embeddings next
-#     index = build_index(sample_docs, None)
-#     print("Index built successfully:", type(index))
-
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
