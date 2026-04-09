@@ -3,6 +3,7 @@
 .env
 __pycache__/
 mentor_notes.md
+p2_mentor_notes.md
 EG_Notes.md
 DailyReflection_Notes.md
 *.pyc
