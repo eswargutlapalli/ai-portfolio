@@ -10,3 +10,4 @@ DailyReflection_Notes.md
 venv_p2/
 venv_an/
 venv/
+*.db
