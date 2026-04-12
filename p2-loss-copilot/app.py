@@ -5,7 +5,6 @@ Author: Eswar Gutlapalli
 """
 
 import streamlit as st
-from llm.synthesizer import synthesize
 from rag.embedder import build_index
 from rag.retriever import get_relevant_chunks
 from agent.tool_agent import run_agent

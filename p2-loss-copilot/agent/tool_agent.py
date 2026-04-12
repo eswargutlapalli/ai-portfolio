@@ -9,6 +9,7 @@ import os
 import streamlit as st
 import anthropic
 from dotenv import load_dotenv
+from typing import TypedDict
 
 load_dotenv()
 
@@ -61,7 +62,12 @@ def _getclient():
         api_key = os.getenv("ANTHROPIC_API_KEY")
     return anthropic.Anthropic(api_key=api_key)
 
-def run_agent(question: str, tool_executor) -> dict:
+# to catch incorrect keys typed in the dict: for ex, toll_calls in place of tool_calls
+class AgentOutput(TypedDict):
+    answer: str
+    tool_calls: list
+
+def run_agent(question: str, tool_executor) -> AgentOutput:
     """
     Agentic loop. Runs until Claude stops requesting tools.
 
@@ -100,7 +106,6 @@ def run_agent(question: str, tool_executor) -> dict:
             return {"answer": answer, "tool_calls": tool_calls_log}
         
         # Claude wants to call tools
-
         if response.stop_reason == "tool_use":
             tool_results = []
 
