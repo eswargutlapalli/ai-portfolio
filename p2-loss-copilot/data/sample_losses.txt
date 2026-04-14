@@ -1,6 +1,20 @@
-Midwest region showed 12% increase in auto loan defaults in Q3.
-Commercial real estate losses concentrated in urban markets.
-Credit card delinquencies rose among 25-34 age group.
-Personal loan defaults increased by 8% in Southern region.
-Mortgage delinquencies up 5% in high interest rate environment.
-Small business loan losses concentrated in retail sector.
+Midwest region showed 12% increase in auto loan defaults in Q3-2023, driven by rising unemployment in manufacturing sectors.
+Commercial real estate losses concentrated in urban markets of the Northeast, particularly office and retail properties post-pandemic.
+Credit card delinquencies rose sharply among the 25-34 age group in Q4-2023 amid elevated consumer debt levels.
+Personal loan defaults increased by 8% in the Southern region due to declining disposable income and cost-of-living pressures.
+Mortgage delinquencies rose 5% across all regions in Q1-2024 as sustained high interest rates reduced refinancing options.
+Small business loan losses concentrated in the retail sector, particularly in the Midwest and South during Q2-2024.
+West region auto loan performance improved in Q1-2024 as employment stabilized and used vehicle prices normalized.
+Northeast commercial real estate exposure remains elevated with office vacancy rates above 20% in major metro areas.
+Credit card charge-offs in the South reached High severity in Q3-2024, correlating with increased revolving balance utilization.
+Midwest mortgage delinquency rates remained Low through 2023 due to stable housing demand and conservative underwriting.
+Personal loan losses in the West were contained at Medium severity in Q2-2024 despite broader economic headwinds.
+Small business loan defaults in the Northeast declined in Q4-2023 following improved access to SBA relief programs.
+Auto loan delinquency rates in the South trended upward through 2024, linked to sub-prime originations from 2022.
+Commercial real estate recoveries in the West were limited by depressed office property valuations in Q3-2024.
+Credit card loss rates moderated in the Midwest in Q1-2024 following aggressive collections activity and balance paydowns.
+Mortgage performance in the Northeast deteriorated in Q4-2024 as property tax increases compressed borrower cash flows.
+Personal loan delinquencies peaked in Q3-2023 across all regions before stabilizing as consumer spending slowed.
+Small business loan losses in the West were concentrated in hospitality and food service sectors through 2023-2024.
+Auto loan severity classifications shifted from Low to Medium in the Northeast between Q2-2023 and Q4-2023.
+Overall portfolio delinquency trends show Commercial RE and Credit Card as highest-risk products across all regions and periods.
