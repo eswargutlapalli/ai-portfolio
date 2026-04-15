@@ -15,3 +15,4 @@ venv_p2/
 venv_an/
 venv/
 *.db
+eva/results

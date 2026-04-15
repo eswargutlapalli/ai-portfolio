@@ -330,8 +330,8 @@
       "must_mention": ["quarter", "trend", "2023", "2024"],
       "forbidden": ["regional breakdown unless volunteered"]
     },
-    "verify": true,
-    "notes": "none confirmed from single observed run"
+    "verify": false,
+    "notes": "Observed: query only. Trend questions interpreted as purely quantitative — RAG not sought. variance: none confirmed from single run, re-verify if behavior changes."
   },
   {
     "id": "Q015",
@@ -711,7 +711,7 @@
     "expected_tools": ["query_database", "search_documents"],
     "sequence": "fixed",
     "tool_call_behavior": {
-        "min_required": 2,
+        "min_required": 3,
         "observed_range": [3, 5],
         "typical": 3,
         "variance": "high"
