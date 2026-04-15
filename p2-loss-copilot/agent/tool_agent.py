@@ -10,6 +10,9 @@ import streamlit as st
 import anthropic
 from dotenv import load_dotenv
 from typing import TypedDict
+from rag.embedder import build_index
+from rag.retriever import get_relevant_chunks
+from sql.query_engine import query as sql_query
 
 load_dotenv()
 
@@ -66,8 +69,26 @@ def _getclient():
 class AgentOutput(TypedDict):
     answer: str
     tool_calls: list
+    usage: dict
 
-def run_agent(question: str, tool_executor) -> AgentOutput:
+def _build_default_index():
+    # Loads sample_losses.txt for eval runs (no Streamlit dependency)
+    with open("data/sample_losses.txt", "r") as f:
+        docs = [line for line in f.read().split("\n") if line.strip()]
+    return build_index(docs)
+
+def _default_tool_executor(tool_name: str, tool_input: dict) -> str:
+    # Standalone executor used by eval runner — no Streamlit required
+    if tool_name == "search_documents":
+        index = _build_default_index()
+        chunks = get_relevant_chunks(tool_input["query"], index)
+        return "\n\n".join([c.page_content for c in chunks])
+    elif tool_name == "query_database":
+        result = sql_query(tool_input["question"])
+        return result["summary"]
+    return f"Unknown tool: {tool_name}"
+
+def run_agent(question: str, tool_executor=None) -> AgentOutput:
     """
     Agentic loop. Runs until Claude stops requesting tools.
 
@@ -80,6 +101,11 @@ def run_agent(question: str, tool_executor) -> AgentOutput:
             - answer: Claude's final text response
             - tool_calls: list of {name, input, results} dicts 
     """
+
+    if tool_executor == None:
+        tool_executor = _default_tool_executor
+    input_tokens = 0
+    output_tokens = 0
 
     client = _getclient()
     messages = [{"role": "user", "content": question}]
@@ -94,6 +120,9 @@ def run_agent(question: str, tool_executor) -> AgentOutput:
             messages=messages
         )
 
+        input_tokens += response.usage.input_tokens
+        output_tokens += response.usage.output_tokens
+
         # Append Claude's response to conversation history
         messages.append({"role": "assistant", "content": response.content})
 
@@ -103,7 +132,7 @@ def run_agent(question: str, tool_executor) -> AgentOutput:
                 (block.text for block in response.content if hasattr(block, "text")),
                 ""
             )
-            return {"answer": answer, "tool_calls": tool_calls_log}
+            return {"answer": answer, "tool_calls": tool_calls_log, "usage": {"input_tokens": input_tokens, "output_tokens": output_tokens}}
         
         # Claude wants to call tools
         if response.stop_reason == "tool_use":
@@ -135,5 +164,6 @@ def run_agent(question: str, tool_executor) -> AgentOutput:
         else:
             return {
                 "answer": f"Unexpected stop reason: {response.stop_reason}",
-                "tool_calls": tool_calls_log
+                "tool_calls": tool_calls_log,
+                "usage": {"input_tokens": input_tokens, "output_tokens": output_tokens}
             }
