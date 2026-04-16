@@ -9,6 +9,7 @@ import sqlite3
 import anthropic
 import streamlit as st
 import pandas as pd
+import pathlib
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -62,7 +63,9 @@ def nl_to_sql(question: str) -> str:
     )
     return message.content[0].text.strip()
 
-def run_sql(sql: str, db_path: str="data/losses.db") -> pd.DataFrame:
+def run_sql(sql: str, db_path: str=None) -> pd.DataFrame:
+    if db_path is None:
+        db_path = str(pathlib.Path(__file__).parent.parent / "data/losses.db")
     # Execute SQL and return results as DataFrame
     conn = sqlite3.connect(db_path)
     try:
