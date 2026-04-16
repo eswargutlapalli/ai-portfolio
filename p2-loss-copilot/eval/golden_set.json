@@ -177,9 +177,9 @@
     "sequence": "single",
     "tool_call_behavior": {
         "min_required": 1,
-        "observed_range": [1, 1],
+        "observed_range": [1, 2],
         "typical": 1,
-        "variance": "none"
+        "variance": "low"
     },
     "difficulty": "easy",
     "reviewer_audience": ["credit_risk"],
@@ -316,9 +316,9 @@
     "sequence": "single",
     "tool_call_behavior": {
         "min_required": 1,
-        "observed_range": [1, 1],
+        "observed_range": [1, 2],
         "typical": 1,
-        "variance": "none"
+        "variance": "low"
     },
     "difficulty": "medium",
     "reviewer_audience": ["credit_risk"],
@@ -393,9 +393,9 @@
     "sequence": "single",
     "tool_call_behavior": {
         "min_required": 1,
-        "observed_range": [1, 1],
+        "observed_range": [1, 2],
         "typical": 1,
-        "variance": "none"
+        "variance": "low"
     },
     "difficulty": "easy",
     "reviewer_audience": ["credit_risk"],
@@ -419,9 +419,9 @@
     "sequence": "single",
     "tool_call_behavior": {
         "min_required": 1,
-        "observed_range": [1, 1],
+        "observed_range": [1, 2],
         "typical": 1,
-        "variance": "none"
+        "variance": "low"
     },
     "difficulty": "easy",
     "reviewer_audience": ["credit_risk"],
@@ -640,9 +640,9 @@
     "sequence": "single",
     "tool_call_behavior": {
         "min_required": 1,
-        "observed_range": [1, 1],
+        "observed_range": [1, 2],
         "typical": 1,
-        "variance": "none"
+        "variance": "low"
     },
     "difficulty": "easy",
     "reviewer_audience": ["anthropic", "credit_risk"],

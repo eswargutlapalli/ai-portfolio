@@ -1,0 +1,2140 @@
+{
+  "run_id": "run_20260416_004945",
+  "timestamp": "2026-04-16T00:49:45.918906",
+  "total_elapsed_ms": 175959.2,
+  "system_metrics": {
+    "total_queries": 30,
+    "successful_runs": 8,
+    "failed_runs": 22,
+    "latency_ms": {
+      "min": 6363.6,
+      "max": 11211.8,
+      "mean": 8292.7,
+      "p50": 8497.3,
+      "p95": 11211.8
+    },
+    "tokens": {
+      "total_consumed": 16039,
+      "mean_per_query": 2004.9,
+      "max_single_query": 2845
+    },
+    "loop_iterations": {
+      "mean": 1.12,
+      "max": 2,
+      "distribution": {
+        "1": 7,
+        "2": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "Q001",
+      "question": "What is the total loss amount across all regions in Q4-2024?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "I encountered a technical issue while trying to retrieve the data \u2014 the database file could not be opened at this time.\n\nHere's what I'd suggest:\n\n1. **Retry the query** \u2014 This may be a temporary connectivity issue with the database.\n2. **Check database availability** \u2014 Ensure the structured losses database is online and accessible.\n3. **Contact your data team** \u2014 If the issue persists, the database may need to be restored or remounted.\n\nPlease try again shortly, and I'll be happy to pull the **total loss amount across all regions for Q4-2024** as soon as the database is available! \ud83d\udd0d",
+      "ground_truth": {
+        "key_facts": [
+          "Returns sum of loss_amount where quarter = Q4-2024"
+        ],
+        "must_mention": [
+          "total",
+          "Q4-2024"
+        ],
+        "forbidden": [
+          "hallucinated regional breakdown not requested"
+        ]
+      },
+      "latency_ms": 7169.447833002778,
+      "input_tokens": 1666,
+      "output_tokens": 211,
+      "total_tokens": 1877,
+      "loop_iterations": 1,
+      "notes": "Baseline single-tool SQL. If RAG fires this is a false positive tool call \u2014 score = 0.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "total",
+            "present": true,
+            "evidence": "total loss amount across all regions for Q4-2024"
+          },
+          {
+            "fact": "Q4-2024",
+            "present": true,
+            "evidence": "Q4-2024"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "hallucinated regional breakdown not requested",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Agent appropriately acknowledged the request for total Q4-2024 losses and explained a technical issue without providing forbidden content.",
+        "id": "Q001",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q002",
+      "question": "Why are small business loans underperforming?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "flexible",
+      "variance": "high",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Small business loan losses concentrated in retail sector",
+          "Losses present in Midwest and South",
+          "Hospitality and food service sectors also affected"
+        ],
+        "must_mention": [
+          "retail",
+          "sector"
+        ],
+        "forbidden": [
+          "fabricated default rate not in DB"
+        ]
+      },
+      "latency_ms": 2457.5310000000172,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Multi-hop observed: search\u2192query\u2192search\u2192query. Flexible sequence \u2014 any order acceptable as long as both tools appear.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "retail",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "sector",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "fabricated default rate not in DB",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about retail and sector are missing.",
+        "id": "Q002",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q003",
+      "question": "Which product had the lowest delinquency rate in 2024 and what regional narrative explains it?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies product with lowest avg delinquency_rate in 2024",
+          "RAG provides regional narrative context for that product"
+        ],
+        "must_mention": [
+          "delinquency rate",
+          "2024"
+        ],
+        "forbidden": [
+          "using 2023 data when 2024 is available"
+        ]
+      },
+      "latency_ms": 6554.297959002724,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Observed: query\u2192search\u2192query. Fixed sequence \u2014 SQL must fire first to identify the product before narrative is meaningful.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "delinquency rate",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2024",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "using 2023 data when 2024 is available",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about delinquency rate and 2024 are missing.",
+        "id": "Q003",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q004",
+      "question": "Compare credit card performance across all regions",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Regional breakdown of credit card loss_amount and delinquency_rate",
+          "Narrative context on credit card trends by region"
+        ],
+        "must_mention": [
+          "region",
+          "credit card"
+        ],
+        "forbidden": [
+          "comparing products other than credit card"
+        ]
+      },
+      "latency_ms": 6349.119666003389,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Observed: query\u2192search. Fixed \u2014 quantitative baseline needed before narrative adds value.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "credit card",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "comparing products other than credit card",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about region and credit card are missing.",
+        "id": "Q004",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q005",
+      "question": "Which region had the highest total loss?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "It seems the database is currently unavailable due to a connection issue. Here's what I'd suggest:\n\n1. **Retry** \u2014 The failure may be temporary. Please try your query again in a moment.\n2. **Check the data source** \u2014 Ensure the database file is accessible and properly configured.\n3. **Alternative data** \u2014 If you have a flat file (CSV, Excel, etc.) with regional loss data, I can help analyze it directly.\n\nWould you like me to retry the query or assist in another way?",
+      "ground_truth": {
+        "key_facts": [
+          "Returns region with MAX(SUM(loss_amount))"
+        ],
+        "must_mention": [
+          "region",
+          "total loss"
+        ],
+        "forbidden": [
+          "narrative speculation without data"
+        ]
+      },
+      "latency_ms": 8499.546416001976,
+      "input_tokens": 1659,
+      "output_tokens": 194,
+      "total_tokens": 1853,
+      "loop_iterations": 1,
+      "notes": "Baseline SQL ranking query. RAG firing = tool selection error.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "total loss",
+            "present": true,
+            "evidence": "regional loss data"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "narrative speculation without data",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "Answer fails to mention which specific region had the highest total loss due to database unavailability.",
+        "id": "Q005",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q006",
+      "question": "What caused the Midwest delinquencies?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Auto loan defaults driven by manufacturing sector unemployment",
+          "12% increase in auto loan defaults Q3-2023"
+        ],
+        "must_mention": [
+          "Midwest",
+          "auto loan"
+        ],
+        "forbidden": [
+          "attributing causes from other regions to Midwest"
+        ]
+      },
+      "latency_ms": 3895.018084003823,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Observed pre-expansion: search\u2192query. Causal question \u2014 RAG leads, SQL validates.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Midwest",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "auto loan",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "attributing causes from other regions to Midwest",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about Midwest and auto loan are missing.",
+        "id": "Q006",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q007",
+      "question": "Summarize the top loss regions and explain why",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies top regions by total loss_amount",
+          "RAG explains narrative causes for those regions"
+        ],
+        "must_mention": [
+          "region",
+          "loss"
+        ],
+        "forbidden": [
+          "fabricating causes not present in narratives"
+        ]
+      },
+      "latency_ms": 6093.52966699953,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Observed: query\u2192search. Fixed \u2014 ranking must precede explanation.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "loss",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "fabricating causes not present in narratives",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about regions and losses are missing.",
+        "id": "Q007",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q008",
+      "question": "What percentage of losses are High severity?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "none-variance query exceeded range (got 2, max1)",
+      "final_answer": "\u26a0\ufe0f **Database Unavailable**\n\nI'm currently unable to retrieve the data as the database connection is failing. This could be due to:\n\n- The database file not being accessible or mounted\n- A connectivity or configuration issue with the database service\n\n**Recommended Actions:**\n1. Please verify that the database file/service is properly connected and accessible.\n2. Contact your system administrator if the issue persists.\n\nOnce the database is back online, I can immediately query the exact count and percentage of **High severity** losses for you. Would you like me to retry, or is there anything else I can help with?",
+      "ground_truth": {
+        "key_facts": [
+          "COUNT where severity=High divided by total COUNT"
+        ],
+        "must_mention": [
+          "High severity",
+          "percentage"
+        ],
+        "forbidden": [
+          "Medium or Low severity figures unless comparison requested"
+        ]
+      },
+      "latency_ms": 11211.787416999869,
+      "input_tokens": 2585,
+      "output_tokens": 260,
+      "total_tokens": 2845,
+      "loop_iterations": 2,
+      "notes": "Percentage aggregation \u2014 SQL only. Confirmed clean.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "High severity",
+            "present": true,
+            "evidence": "High severity losses"
+          },
+          {
+            "fact": "percentage",
+            "present": true,
+            "evidence": "percentage of High severity losses"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "Medium or Low severity figures unless comparison requested",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer mentions both required facts and avoids forbidden content, though it couldn't provide the actual data due to database unavailability.",
+        "id": "Q008",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q009",
+      "question": "What do the documents say about mortgage performance?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Mortgage delinquencies up 5% in high interest rate environment",
+          "Northeast mortgage deterioration in Q4-2024",
+          "Midwest mortgage delinquency remained Low through 2023"
+        ],
+        "must_mention": [
+          "mortgage",
+          "interest rate"
+        ],
+        "forbidden": [
+          "SQL figures unless narrative references them"
+        ]
+      },
+      "latency_ms": 5524.994375002279,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Explicit document question \u2014 RAG only. SQL firing = false positive.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "mortgage",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "interest rate",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "SQL figures unless narrative references them",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about mortgage and interest rate are missing.",
+        "id": "Q009",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q010",
+      "question": "Which quarter had the worst overall delinquency and what drove it?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "high",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies quarter with highest avg delinquency_rate",
+          "RAG provides multi-angle narrative: causes, sectors, regions"
+        ],
+        "must_mention": [
+          "quarter",
+          "delinquency"
+        ],
+        "forbidden": [
+          "stating a quarter without SQL evidence"
+        ]
+      },
+      "latency_ms": 4848.2478330042795,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Observed: query\u2192search\u2192search\u2192search\u2192query. Multi-hop investigative. min_tool_calls=3 allows for simpler valid responses.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "quarter",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "delinquency",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "stating a quarter without SQL evidence",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about quarter and delinquency are missing.",
+        "id": "Q010",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q011",
+      "question": "What is the average delinquency rate for Auto Loans across all quarters?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "I'm sorry, it seems there was a technical issue connecting to the database at this moment. Here's what you can do:\n\n1. **Retry** \u2014 The issue may be temporary. Please try your query again shortly.\n2. **Check Database Connectivity** \u2014 Ensure the structured losses database is accessible and the file path is correctly configured.\n3. **Contact Support** \u2014 If the issue persists, reach out to your data engineering or IT team to investigate the database connection.\n\nOnce the connection is restored, I'll be able to retrieve the **average delinquency rate for Auto Loans across all quarters** right away. Would you like me to try again?",
+      "ground_truth": {
+        "key_facts": [
+          "AVG(delinquency_rate) where product = Auto Loan"
+        ],
+        "must_mention": [
+          "Auto Loan",
+          "average",
+          "delinquency"
+        ],
+        "forbidden": [
+          "mixing in other product types"
+        ]
+      },
+      "latency_ms": 7233.195875000092,
+      "input_tokens": 1669,
+      "output_tokens": 215,
+      "total_tokens": 1884,
+      "loop_iterations": 1,
+      "notes": "Simple AVG aggregation with WHERE filter. Clean SQL-only baseline.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Auto Loan",
+            "present": true,
+            "evidence": "average delinquency rate for Auto Loans across all quarters"
+          },
+          {
+            "fact": "average",
+            "present": true,
+            "evidence": "average delinquency rate for Auto Loans across all quarters"
+          },
+          {
+            "fact": "delinquency",
+            "present": true,
+            "evidence": "average delinquency rate for Auto Loans across all quarters"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "mixing in other product types",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required terms are present in the response and no forbidden content was detected.",
+        "id": "Q011",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q012",
+      "question": "Which product had the highest loss amount in Q1-2024?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "It appears the database is currently unavailable due to a connectivity issue (\"unable to open database file\"). Here's what I'd recommend:\n\n1. **Retry the query** \u2014 This may be a transient issue. Please try again in a few moments.\n2. **Check the database connection** \u2014 Ensure the structured losses database file is accessible and properly mounted.\n3. **Alternative data source** \u2014 If you have the raw data available, I can help analyze it directly.\n\nWould you like me to retry the query or assist in another way? \ud83d\ude0a",
+      "ground_truth": {
+        "key_facts": [
+          "MAX(loss_amount) filtered to Q1-2024, grouped by product"
+        ],
+        "must_mention": [
+          "Q1-2024",
+          "product"
+        ],
+        "forbidden": [
+          "answers from other quarters"
+        ]
+      },
+      "latency_ms": 7482.171457995719,
+      "input_tokens": 1681,
+      "output_tokens": 209,
+      "total_tokens": 1890,
+      "loop_iterations": 1,
+      "notes": "Quarter-filtered ranking. SQL only \u2014 no narrative requested.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Q1-2024",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "product",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "answers from other quarters",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "Agent failed to address the specific Q1-2024 timeframe and product analysis due to database connectivity issues.",
+        "id": "Q012",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q013",
+      "question": "How many High severity records exist per region?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "It seems the database is currently unavailable due to a connectivity issue. Here's what I'd suggest:\n\n1. **Retry the query** \u2014 This may be a transient issue. Please try again in a moment.\n2. **Check the database connection** \u2014 Ensure the database file path is correctly configured and accessible.\n3. **Alternative data source** \u2014 If you have the data in another format (e.g., CSV or Excel), I can help analyze it directly.\n\nWould you like me to retry the query, or is there anything else I can help you with?",
+      "ground_truth": {
+        "key_facts": [
+          "COUNT grouped by region where severity = High"
+        ],
+        "must_mention": [
+          "High severity",
+          "region",
+          "count"
+        ],
+        "forbidden": [
+          "Medium or Low counts unless volunteered as context"
+        ]
+      },
+      "latency_ms": 6363.630750005541,
+      "input_tokens": 1662,
+      "output_tokens": 204,
+      "total_tokens": 1866,
+      "loop_iterations": 1,
+      "notes": "COUNT with GROUP BY and WHERE filter. Tests SQL rule #2 compliance.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "High severity",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "count",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "Medium or Low counts unless volunteered as context",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "The answer does not provide any information about High severity record counts per region due to database connectivity issues.",
+        "id": "Q013",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q014",
+      "question": "Show the trend in total losses by quarter from 2023 to 2024",
+      "query_type": "sql_only",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SUM(loss_amount) grouped by quarter",
+          "Ordered Q1-2023 through Q4-2024"
+        ],
+        "must_mention": [
+          "quarter",
+          "trend",
+          "2023",
+          "2024"
+        ],
+        "forbidden": [
+          "regional breakdown unless volunteered"
+        ]
+      },
+      "latency_ms": 5099.588125005539,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Observed: query only. Trend questions interpreted as purely quantitative \u2014 RAG not sought. variance: none confirmed from single run, re-verify if behavior changes.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "quarter",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "trend",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2023",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2024",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "regional breakdown unless volunteered",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q014",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q015",
+      "question": "What do the documents say about commercial real estate risks?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Commercial RE losses concentrated in urban markets",
+          "Office vacancy rates above 20% in major metro areas",
+          "Northeast exposure elevated post-pandemic"
+        ],
+        "must_mention": [
+          "commercial real estate",
+          "urban"
+        ],
+        "forbidden": [
+          "SQL figures unless narrative references them"
+        ]
+      },
+      "latency_ms": 3891.389208001783,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Explicit document question. RAG only \u2014 mirrors Q009 pattern for Commercial RE.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "commercial real estate",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "urban",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "SQL figures unless narrative references them",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about commercial real estate and urban areas are missing.",
+        "id": "Q015",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q016",
+      "question": "What are the narratives around credit card delinquencies?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Delinquencies rose among 25-34 age group",
+          "South reached High severity in Q3-2024",
+          "Midwest moderated in Q1-2024 after collections activity"
+        ],
+        "must_mention": [
+          "credit card",
+          "delinquency"
+        ],
+        "forbidden": [
+          "SQL figures not referenced in narratives"
+        ]
+      },
+      "latency_ms": 2092.4003339969204,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Narrative-only. Tests RAG retrieval relevance across multiple narrative entries.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "credit card",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "delinquency",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "SQL figures not referenced in narratives",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about credit card and delinquency are missing.",
+        "id": "Q016",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q017",
+      "question": "What regional factors explain personal loan defaults?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Southern region defaults increased 8% due to declining disposable income",
+          "West personal loans contained at Medium severity in Q2-2024",
+          "Personal loan delinquencies peaked Q3-2023 then stabilized"
+        ],
+        "must_mention": [
+          "personal loan",
+          "region"
+        ],
+        "forbidden": [
+          "auto loan or mortgage causes attributed to personal loans"
+        ]
+      },
+      "latency_ms": 4358.773667001515,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Regional causal narrative \u2014 RAG only. Tests cross-product retrieval accuracy.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "personal loan",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "auto loan or mortgage causes attributed to personal loans",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about personal loans and regions are missing.",
+        "id": "Q017",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q018",
+      "question": "What sectors are driving small business loan losses?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Retail sector primary driver",
+          "Hospitality and food service in West",
+          "Concentrated in Midwest and South"
+        ],
+        "must_mention": [
+          "retail",
+          "small business"
+        ],
+        "forbidden": [
+          "Commercial RE sector causes attributed to small business loans"
+        ]
+      },
+      "latency_ms": 3903.8786249948316,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Sector-level narrative \u2014 RAG only. Tests specificity of retrieval.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "retail",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "small business",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "Commercial RE sector causes attributed to small business loans",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about retail and small business sectors are missing.",
+        "id": "Q018",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q019",
+      "question": "Which product has the worst delinquency rate and what does the narrative say?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies product with MAX(AVG(delinquency_rate))",
+          "RAG provides narrative context for that specific product"
+        ],
+        "must_mention": [
+          "delinquency rate",
+          "product"
+        ],
+        "forbidden": [
+          "narrative for wrong product"
+        ]
+      },
+      "latency_ms": 4595.113666997349,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Original P4 demo query. Post-expansion observed: query\u2192search (was query\u2192search\u2192search pre-expansion). Retrieval density effect documented.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "delinquency rate",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "product",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "narrative for wrong product",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q019",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q020",
+      "question": "Which region has the highest Commercial RE exposure and what are the risks?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies region with highest Commercial RE loss_amount",
+          "RAG provides office vacancy, urban concentration context"
+        ],
+        "must_mention": [
+          "Commercial RE",
+          "region"
+        ],
+        "forbidden": [
+          "confusing Commercial RE with Small Business Loan risks"
+        ]
+      },
+      "latency_ms": 4370.205041996087,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Verify: product name must match exact schema string 'Commercial RE' in generated SQL.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Commercial RE",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "confusing Commercial RE with Small Business Loan risks",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required facts about Commercial RE and region are missing.",
+        "id": "Q020",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q021",
+      "question": "How has the Midwest portfolio evolved from 2023 to 2024?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL shows Midwest loss_amount and delinquency_rate by quarter 2023-2024",
+          "RAG provides auto loan and mortgage narrative for Midwest"
+        ],
+        "must_mention": [
+          "Midwest",
+          "2023",
+          "2024"
+        ],
+        "forbidden": [
+          "conflating Midwest trends with other regions"
+        ]
+      },
+      "latency_ms": 7406.784709004569,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Time-series hybrid. Verify sequence \u2014 SQL must anchor the trend before narrative explains it.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Midwest",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2023",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2024",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "conflating Midwest trends with other regions",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts about Midwest evolution from 2023 to 2024 are missing.",
+        "id": "Q021",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q022",
+      "question": "What is the total loss for Mortgage products in the West?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SUM(loss_amount) where product=Mortgage AND region=West"
+        ],
+        "must_mention": [
+          "Mortgage",
+          "West",
+          "total"
+        ],
+        "forbidden": [
+          "including other regions or products"
+        ]
+      },
+      "latency_ms": 7678.903083004116,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Two-filter SQL. Tests AND condition generation.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Mortgage",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "West",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "total",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "including other regions or products",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q022",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q023",
+      "question": "Which region improved the most between 2023 and 2024?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL computes delinquency_rate change per region between years",
+          "RAG explains what drove improvement in the leading region"
+        ],
+        "must_mention": [
+          "improved",
+          "region",
+          "2023",
+          "2024"
+        ],
+        "forbidden": [
+          "declaring improvement without quantitative basis"
+        ]
+      },
+      "latency_ms": 6144.415750000917,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Comparative time-series \u2014 hardest SQL pattern. Verify Claude handles year comparison correctly.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "improved",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2023",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2024",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "declaring improvement without quantitative basis",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q023",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q024",
+      "question": "Are there any regions where severity worsened in 2024 compared to 2023?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "high",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies regions with higher High severity count in 2024 vs 2023",
+          "RAG explains narrative drivers for deteriorating regions"
+        ],
+        "must_mention": [
+          "severity",
+          "2024",
+          "2023",
+          "region"
+        ],
+        "forbidden": [
+          "asserting worsening without SQL evidence"
+        ]
+      },
+      "latency_ms": 4812.574749994383,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Non-deterministic tool call count observed across 4 runs: [3,5,3,5]. Both are valid reasoning paths. Score on tool coverage and answer correctness, not exact call count.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "severity",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2024",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2023",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "asserting worsening without SQL evidence",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts about severity, regions, and years 2023-2024 are missing.",
+        "id": "Q024",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q025",
+      "question": "What is driving losses in the South?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "flexible",
+      "variance": "high",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "Credit card charge-offs High severity Q3-2024",
+          "Personal loan defaults up due to cost-of-living pressures",
+          "Auto loan delinquency linked to sub-prime originations"
+        ],
+        "must_mention": [
+          "South"
+        ],
+        "forbidden": [
+          "attributing Northeast or Midwest drivers to South"
+        ]
+      },
+      "latency_ms": 4656.790916997124,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Causal hybrid \u2014 flexible sequence. Claude may lead with RAG or SQL depending on interpretation.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "South",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "attributing Northeast or Midwest drivers to South",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so required mention of 'South' is missing.",
+        "id": "Q025",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q026",
+      "question": "What is the average loss amount by severity level?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "It seems the database is currently unavailable due to a connectivity issue. Here's what I attempted:\n\n- **Query:** Average loss amount grouped by severity level\n- **Status:** \u274c Failed \u2014 *\"unable to open database file\"*\n\n### Recommended Next Steps:\n1. **Retry** \u2014 The issue may be transient. Please try again in a few moments.\n2. **Check Database Connection** \u2014 Ensure the structured losses database file is accessible and properly mounted.\n3. **Contact Support** \u2014 If the issue persists, escalate to the data engineering team to verify the database path and permissions.\n\nWould you like me to retry the query, or is there anything else I can help you with?",
+      "ground_truth": {
+        "key_facts": [
+          "AVG(loss_amount) grouped by severity"
+        ],
+        "must_mention": [
+          "High",
+          "Medium",
+          "Low",
+          "average"
+        ],
+        "forbidden": [
+          "regional or product breakdown unless volunteered"
+        ]
+      },
+      "latency_ms": 9884.50279099925,
+      "input_tokens": 1648,
+      "output_tokens": 220,
+      "total_tokens": 1868,
+      "loop_iterations": 1,
+      "notes": "GROUP BY severity \u2014 tests all three severity values appear in output.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "High",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "Medium",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "Low",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "average",
+            "present": true,
+            "evidence": "Average loss amount grouped by severity level"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "regional or product breakdown unless volunteered",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "Answer failed to provide severity levels (High, Medium, Low) due to database connectivity issues.",
+        "id": "Q026",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q027",
+      "question": "Which products have delinquency rates above 15%?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "It seems the database is currently unavailable due to a connectivity issue. Here's what I'd recommend:\n\n1. **Retry the query** \u2014 The failure appears to be a transient database connection error. Please try again in a moment.\n2. **Check the data source** \u2014 Ensure the database file path is correctly configured and accessible by the system.\n3. **Alternative data pull** \u2014 If you have a flat file (CSV, Excel) of delinquency rates by product, I can analyze that directly.\n\nOnce the database is accessible, I will query for all products with a **delinquency rate > 15%**, including:\n- Product name\n- Delinquency rate (%)\n- Outstanding balance\n- Any relevant segmentation (e.g., vintage, region)\n\nWould you like me to **retry the query**, or do you have an alternative data source you'd like me to work with?",
+      "ground_truth": {
+        "key_facts": [
+          "WHERE delinquency_rate > 0.15 \u2014 note schema stores as decimal not percent"
+        ],
+        "must_mention": [
+          "delinquency rate",
+          "15%"
+        ],
+        "forbidden": [
+          "using 15 instead of 0.15 in WHERE clause"
+        ]
+      },
+      "latency_ms": 8497.305167002196,
+      "input_tokens": 1673,
+      "output_tokens": 283,
+      "total_tokens": 1956,
+      "loop_iterations": 1,
+      "notes": "Critical test \u2014 delinquency_rate stored as 0.0-1.0 decimal. Claude must convert correctly.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "delinquency rate",
+            "present": true,
+            "evidence": "delinquency rates by product"
+          },
+          {
+            "fact": "15%",
+            "present": true,
+            "evidence": "delinquency rate > 15%"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "using 15 instead of 0.15 in WHERE clause",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer mentions both required facts and avoids forbidden content despite database connectivity issues.",
+        "id": "Q027",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q028",
+      "question": "Give me a full risk summary of the Northeast portfolio",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "flexible",
+      "variance": "high",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL: total losses, avg delinquency, severity breakdown for Northeast",
+          "RAG: Commercial RE urban concentration, credit card trends, mortgage deterioration"
+        ],
+        "must_mention": [
+          "Northeast",
+          "Commercial RE"
+        ],
+        "forbidden": [
+          "summary that ignores either quantitative or qualitative dimension"
+        ]
+      },
+      "latency_ms": 5446.380916000635,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Comprehensive portfolio summary \u2014 hardest hybrid. Both dimensions required for full credit.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Northeast",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "Commercial RE",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "summary that ignores either quantitative or qualitative dimension",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q028",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q029",
+      "question": "Which quarter in 2024 had the highest credit card delinquency and what does the narrative say about it?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL: MAX(delinquency_rate) for Credit Card in 2024 by quarter",
+          "RAG: credit card narrative references Q3-2024 South High severity"
+        ],
+        "must_mention": [
+          "credit card",
+          "2024",
+          "quarter"
+        ],
+        "forbidden": [
+          "citing 2023 quarters when 2024 is specified"
+        ]
+      },
+      "latency_ms": 3975.557541998569,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Product + year + quarter filter combination. Fixed sequence required.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "credit card",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "2024",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "quarter",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "citing 2023 quarters when 2024 is specified",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q029",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q030",
+      "question": "Build a complete risk narrative for the highest loss product across all regions and time periods",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "high",
+      "success": false,
+      "error": "[Errno 2] No such file or directory: 'data/sample_losses.txt'",
+      "observed_tools": [],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.0,
+      "tool_score_reason": "below min_required (True) ",
+      "final_answer": "",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies highest loss product overall",
+          "SQL breakdown of that product by region",
+          "RAG provides full narrative context for that product"
+        ],
+        "must_mention": [
+          "highest loss",
+          "product",
+          "region",
+          "narrative"
+        ],
+        "forbidden": [
+          "building narrative before identifying product via SQL"
+        ]
+      },
+      "latency_ms": 5459.846874997311,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "loop_iterations": 0,
+      "notes": "Capstone query \u2014 maximum complexity. Expects multi-hop: SQL identify \u2192 SQL breakdown \u2192 RAG explain. Portfolio screenshot candidate.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "highest loss",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "product",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "region",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "narrative",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "building narrative before identifying product via SQL",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "No answer was provided, so all required facts are missing.",
+        "id": "Q030",
+        "judge_error": null
+      }
+    }
+  ]
+}
