@@ -40,7 +40,7 @@ def score_tool_behavior(observed: list[str], entry: dict) -> dict:
     variance = behavior["variance"]
 
     # Check 1 — minimum tool calls made
-    if len(observed_types) < behavior["min_required"]:
+    if len(observed) < behavior["min_required"]:
         return {"score": 0.0, "reason": f"below min_required ({len(observed_types) < behavior['min_required']}) "}
 
     # Check 2 — all required tool types present
