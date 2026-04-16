@@ -7,6 +7,7 @@ p2_mentor_notes.md
 P3_Session_Notes_Handoff.md
 P4_Session_Notes_Handoff.md
 P4_SessionA_Handoff.md
+P4_SessionB_Handoff.md
 P4_Error_Notes.md
 EG_Notes.md
 DailyReflection_Notes.md
@@ -15,4 +16,4 @@ venv_p2/
 venv_an/
 venv/
 *.db
-eva/results
+eval/results
