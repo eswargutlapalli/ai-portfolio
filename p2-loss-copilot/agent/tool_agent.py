@@ -8,6 +8,7 @@ Author: Eswar Gutlapalli
 import os
 import streamlit as st
 import anthropic
+import pathlib
 from dotenv import load_dotenv
 from typing import TypedDict
 from rag.embedder import build_index
@@ -73,7 +74,8 @@ class AgentOutput(TypedDict):
 
 def _build_default_index():
     # Loads sample_losses.txt for eval runs (no Streamlit dependency)
-    with open("data/sample_losses.txt", "r") as f:
+    base_path = pathlib.Path(__file__).parent.parent
+    with open(base_path / "data/sample_losses.txt", "r") as f:
         docs = [line for line in f.read().split("\n") if line.strip()]
     return build_index(docs)
 
