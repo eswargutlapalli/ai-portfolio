@@ -66,6 +66,7 @@ def nl_to_sql(question: str) -> str:
 def run_sql(sql: str, db_path: str=None) -> pd.DataFrame:
     if db_path is None:
         db_path = str(pathlib.Path(__file__).parent.parent / "data/losses.db")
+        
     # Execute SQL and return results as DataFrame
     conn = sqlite3.connect(db_path)
     try:
@@ -74,7 +75,10 @@ def run_sql(sql: str, db_path: str=None) -> pd.DataFrame:
         conn.close()
     return df
 
-def query(question: str, db_path: str="data/losses.db") -> dict:
+def query(question: str, db_path: str=None) -> dict:
+    if db_path is None:
+        db_path = str(pathlib.Path(__file__).parent.parent / "data/losses.db")
+
     """Full pipeline: question → SQL → DataFrame → dict with summary.
     
     Returns a clean error dict instead of raising — so the agentic loop
