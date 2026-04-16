@@ -59,6 +59,8 @@ You may call both the tools if the answer requires quantitative and qualitative 
 After receiving tool results, write a concise executive summary (3-5 sentence)
 Never use $ sign - write amount as 'USD X.XM'."""
 
+MAX_ITERATIONS = 8
+
 def _getclient():
     try:
         api_key = st.secrets.get("ANTHROPIC_API_KEY")
@@ -157,6 +159,14 @@ def run_agent(question: str, tool_executor=None) -> AgentOutput:
                     "tool_use_id": block.id,
                     "content": result_str
                 })
+
+            # Guard — prevent runaway agentic loops
+            if len(tool_calls_log) >= MAX_ITERATIONS:
+                return {
+                    "answer"    : "Max tool iterations reached. Partial answer may follow.",
+                    "tool_calls": tool_calls_log,
+                    "usage"     : {"input_tokens": input_tokens, "output_tokens": output_tokens}
+                }
 
             # Feed all results back in one user turn
             messages.append({"role": "user", "content": tool_results})
