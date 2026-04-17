@@ -4,7 +4,7 @@
 __pycache__/
 *.pyc
 *.db
-eval/results/
+p2-loss-copilot/eval/results/
 venv_p2/
 venv_an/
 venv/
