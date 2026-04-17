@@ -1,0 +1,2231 @@
+{
+  "run_id": "run_20260416_020313",
+  "timestamp": "2026-04-16T02:03:13.312786",
+  "total_elapsed_ms": 442236.5,
+  "system_metrics": {
+    "total_queries": 30,
+    "successful_runs": 30,
+    "failed_runs": 0,
+    "latency_ms": {
+      "min": 6757.4,
+      "max": 40143.3,
+      "mean": 14741.1,
+      "p50": 13272.1,
+      "p95": 27029.0
+    },
+    "tokens": {
+      "total_consumed": 92765,
+      "mean_per_query": 3092.2,
+      "max_single_query": 7404
+    },
+    "loop_iterations": {
+      "mean": 2.43,
+      "max": 8,
+      "distribution": {
+        "1": 13,
+        "2": 8,
+        "3": 2,
+        "4": 2,
+        "5": 3,
+        "7": 1,
+        "8": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "Q001",
+      "question": "What is the total loss amount across all regions in Q4-2024?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "Here is a breakdown of the **total loss amounts across all regions in Q4-2024**:\n\n| Region | Total Loss |\n|-----------|------------|\n| Northeast | USD 10.8M |\n| South | USD 17.5M |\n| West | USD 16.1M |\n| Midwest | USD 1.2M |\n| **Total** | **USD 45.6M** |\n\n**Executive Summary:**\nTotal credit losses across all regions in Q4-2024 amounted to **USD 45.6M**. The **South** region recorded the highest losses at USD 17.5M, closely followed by the **West** at USD 16.1M, together accounting for over 73% of total losses. The **Northeast** contributed USD 10.8M, while the **Midwest** had the lowest exposure with just USD 1.2M in losses.",
+      "ground_truth": {
+        "key_facts": [
+          "Returns sum of loss_amount where quarter = Q4-2024"
+        ],
+        "must_mention": [
+          "total",
+          "Q4-2024"
+        ],
+        "forbidden": [
+          "hallucinated regional breakdown not requested"
+        ]
+      },
+      "latency_ms": 10766.906999997445,
+      "input_tokens": 1693,
+      "output_tokens": 273,
+      "total_tokens": 1966,
+      "loop_iterations": 1,
+      "notes": "Baseline single-tool SQL. If RAG fires this is a false positive tool call \u2014 score = 0.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "total",
+            "present": true,
+            "evidence": "Total credit losses across all regions in Q4-2024 amounted to USD 45.6M"
+          },
+          {
+            "fact": "Q4-2024",
+            "present": true,
+            "evidence": "total loss amounts across all regions in Q4-2024"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "hallucinated regional breakdown not requested",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer provides the required total and Q4-2024 reference with no forbidden content detected.",
+        "id": "Q001",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q002",
+      "question": "Why are small business loans underperforming?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "flexible",
+      "variance": "high",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "expected_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [3, 5]",
+      "final_answer": "## Executive Summary: Small Business Loan Underperformance\n\nSmall business loans are exhibiting a **delinquency rate of ~9.94%** \u2014 among the highest across all loan segments \u2014 with **total losses of USD 51.0M** and an average loss of USD 3.19M per record, signaling meaningful portfolio stress. The underperformance is heavily concentrated by **sector and geography**: retail businesses in the **Midwest and South** drove the bulk of losses in Q2 2024, while the **hospitality and food service** industries in the West continued to struggle through 2023\u20132024, reflecting ongoing post-pandemic revenue fragility in those sectors. Notably, the **Northeast showed improvement** in Q4 2023, where expanded access to SBA relief programs helped reduce default rates, suggesting that government support mechanisms can be an effective mitigant. Taken together, the root causes appear to be a combination of **sector-specific cash flow stress** (retail, hospitality, food service) and **geographic economic headwinds**, rather than broad-based credit deterioration. Targeted monitoring of Midwest/South retail exposures and West Coast hospitality concentrations is recommended as a near-term priority.",
+      "ground_truth": {
+        "key_facts": [
+          "Small business loan losses concentrated in retail sector",
+          "Losses present in Midwest and South",
+          "Hospitality and food service sectors also affected"
+        ],
+        "must_mention": [
+          "retail",
+          "sector"
+        ],
+        "forbidden": [
+          "fabricated default rate not in DB"
+        ]
+      },
+      "latency_ms": 12910.316499997862,
+      "input_tokens": 2011,
+      "output_tokens": 409,
+      "total_tokens": 2420,
+      "loop_iterations": 2,
+      "notes": "Multi-hop observed: search\u2192query\u2192search\u2192query. Flexible sequence \u2014 any order acceptable as long as both tools appear.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "retail",
+            "present": true,
+            "evidence": "retail businesses in the Midwest and South drove the bulk of losses"
+          },
+          {
+            "fact": "sector",
+            "present": true,
+            "evidence": "sector-specific cash flow stress"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "fabricated default rate not in DB",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts are present and no forbidden content detected.",
+        "id": "Q002",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q003",
+      "question": "Which product had the lowest delinquency rate in 2024 and what regional narrative explains it?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "Here is the executive summary:\n\n---\n\n### \ud83d\udcca Executive Summary: Lowest Delinquency Rate by Product \u2013 2024\n\n**Mortgages** recorded the lowest average delinquency rate among all products in 2024, at approximately **4.7%**. Despite a sector-wide 5% rise in delinquencies in Q1 2024 \u2014 driven by sustained high interest rates that curtailed refinancing options \u2014 mortgages still outperformed other products such as auto loans on a full-year average basis. Regionally, the **Midwest** was a key stabilizing force, where conservative underwriting standards and steady housing demand kept delinquency levels notably suppressed. In contrast, **Northeast** performance deteriorated in Q4 2024 as rising property taxes compressed borrower cash flows, partially offsetting Midwest gains. Overall, the mortgage portfolio's relative resilience is attributable to tighter origination criteria in core regions rather than broad macroeconomic tailwinds.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies product with lowest avg delinquency_rate in 2024",
+          "RAG provides regional narrative context for that product"
+        ],
+        "must_mention": [
+          "delinquency rate",
+          "2024"
+        ],
+        "forbidden": [
+          "using 2023 data when 2024 is available"
+        ]
+      },
+      "latency_ms": 15204.696332999447,
+      "input_tokens": 3217,
+      "output_tokens": 471,
+      "total_tokens": 3688,
+      "loop_iterations": 3,
+      "notes": "Observed: query\u2192search\u2192query. Fixed sequence \u2014 SQL must fire first to identify the product before narrative is meaningful.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "delinquency rate",
+            "present": true,
+            "evidence": "lowest average delinquency rate among all products in 2024, at approximately 4.7%"
+          },
+          {
+            "fact": "2024",
+            "present": true,
+            "evidence": "recorded the lowest average delinquency rate among all products in 2024"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "using 2023 data when 2024 is available",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies mortgages as having the lowest delinquency rate in 2024 with proper regional analysis and no forbidden content.",
+        "id": "Q003",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q004",
+      "question": "Compare credit card performance across all regions",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "## Credit Card Performance \u2014 Regional Comparison\n\n---\n\n### \ud83d\udcca Quantitative Summary\n\n| Region | Total Losses | Avg. Delinquency Rate | Min Delq. Rate | Max Delq. Rate |\n|---|---|---|---|---|\n| \ud83d\udd34 **West** | USD 12.4M | 17.8% | 12.0% | 23.0% |\n| \ud83d\udfe0 **Northeast** | USD 9.7M | 20.0% | 17.0% | 24.0% |\n| \ud83d\udfe1 **South** | USD 6.2M | 14.7% | 14.0% | 15.0% |\n| \ud83d\udfe2 **Midwest** | USD 4.7M | 18.0% | 13.0% | 23.0% |\n| **Total** | **USD 33.0M** | \u2014 | \u2014 | \u2014 |\n\n---\n\n### \ud83d\udd0d Key Regional Insights\n\n- **West \u2013 Highest Absolute Loss (USD 12.4M):** The West carries the largest share of credit card losses in the portfolio (~37.6% of total). The wide delinquency range (12%\u201323%) signals high variability and potential concentration risk in specific sub-markets.\n\n- **Northeast \u2013 Highest Avg. Delinquency Rate (20.0%):** Although losses are the second largest at USD 9.7M, the Northeast has the highest average delinquency rate, with a tight band between 17%\u201324%, suggesting a persistently stressed borrower base rather than isolated incidents.\n\n- **South \u2013 Lowest Risk Profile (USD 6.2M | 14.7% Delq.):** The South shows the most stable and lowest delinquency rate, though charge-offs hit **High severity in Q3-2024**, driven by rising revolving balance utilization \u2014 a trend worth monitoring closely.\n\n- **Midwest \u2013 Best Improvement Trend (USD 4.7M):** The Midwest holds the lowest total losses, and loss rates **moderated in Q1-2024** following aggressive collections activity and balance paydowns \u2014 a positive signal for credit management effectiveness.\n\n---\n\n### \ud83e\udded Executive Summary\n\nThe West and Northeast are the most stressed regions, contributing **USD 22.1M (67%)** of total credit card losses of USD 33.0M, with the Northeast posting the highest average delinquency rate at 20.0%. The South appears relatively stable on rate metrics, but the Q3-2024 charge-off spike driven by revolving balance utilization warrants continued vigilance. The Midwest stands out as a positive outlier, where proactive collections strategies have demonstrably reduced loss rates. Across all regions, credit cards remain one of the **highest-risk products** in the portfolio, alongside Commercial Real Estate, suggesting a need for tightened underwriting and enhanced collections capabilities \u2014 particularly in the West and Northeast.",
+      "ground_truth": {
+        "key_facts": [
+          "Regional breakdown of credit card loss_amount and delinquency_rate",
+          "Narrative context on credit card trends by region"
+        ],
+        "must_mention": [
+          "region",
+          "credit card"
+        ],
+        "forbidden": [
+          "comparing products other than credit card"
+        ]
+      },
+      "latency_ms": 17863.092500003404,
+      "input_tokens": 1974,
+      "output_tokens": 819,
+      "total_tokens": 2793,
+      "loop_iterations": 2,
+      "notes": "Observed: query\u2192search. Fixed \u2014 quantitative baseline needed before narrative adds value.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "Regional Comparison... West, Northeast, South, Midwest"
+          },
+          {
+            "fact": "credit card",
+            "present": true,
+            "evidence": "Credit Card Performance \u2014 Regional Comparison"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "comparing products other than credit card",
+            "detected": true,
+            "evidence": "credit cards remain one of the highest-risk products in the portfolio, alongside Commercial Real Estate"
+          }
+        ],
+        "score": 0.5,
+        "reason_code": "FORBIDDEN_DETECTED",
+        "summary": "Answer covers required regional credit card analysis but includes forbidden comparison to other products like Commercial Real Estate.",
+        "id": "Q004",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q005",
+      "question": "Which region had the highest total loss?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "**The South region recorded the highest total loss at USD 113.9M.**\n\nThe South region significantly outpaced other regions in total losses. This level of loss concentration in a single region may warrant closer attention from a credit risk perspective, as it could indicate systemic vulnerabilities, elevated exposure, or adverse economic conditions specific to that geography. A deeper dive into the underlying drivers \u2014 such as sector mix, borrower quality, or macro factors \u2014 would be advisable.",
+      "ground_truth": {
+        "key_facts": [
+          "Returns region with MAX(SUM(loss_amount))"
+        ],
+        "must_mention": [
+          "region",
+          "total loss"
+        ],
+        "forbidden": [
+          "narrative speculation without data"
+        ]
+      },
+      "latency_ms": 7884.9674579978455,
+      "input_tokens": 1664,
+      "output_tokens": 178,
+      "total_tokens": 1842,
+      "loop_iterations": 1,
+      "notes": "Baseline SQL ranking query. RAG firing = tool selection error.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "The South region recorded the highest total loss"
+          },
+          {
+            "fact": "total loss",
+            "present": true,
+            "evidence": "highest total loss at USD 113.9M"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "narrative speculation without data",
+            "detected": true,
+            "evidence": "This level of loss concentration in a single region may warrant closer attention from a credit risk perspective, as it could indicate systemic vulnerabilities, elevated exposure, or adverse economic conditions specific to that geography"
+          }
+        ],
+        "score": 0.5,
+        "reason_code": "FORBIDDEN_DETECTED",
+        "summary": "All required facts present but answer contains speculative analysis without supporting data.",
+        "id": "Q005",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q006",
+      "question": "What caused the Midwest delinquencies?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "expected_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "### Midwest Delinquencies \u2013 Executive Summary\n\nBased on qualitative and quantitative analysis, here are the key findings:\n\n1. **Mortgages remained resilient** \u2013 Mortgage delinquency rates in the Midwest stayed low throughout the observed periods (ranging from 0.02 to 0.06), supported by **stable housing demand and conservative underwriting standards** through 2023.\n\n2. **Credit Cards showed stress then recovery** \u2013 Credit card delinquency rates were moderate in Q1-2023 (0.13) but spiked to a **High severity level of 0.23 in Q2-2024**, though prior periods saw moderation following **aggressive collections activity and balance paydowns** in early 2024.\n\n3. **Small Business and Commercial RE under pressure** \u2013 Commercial Real Estate delinquencies rose from 0.05 (Q2-2023) to 0.10 (Q1-2024), while Small Business Loan delinquencies fluctuated across quarters, suggesting **tightening credit conditions for smaller borrowers**.\n\n4. **Personal Loans saw notable spikes** \u2013 Personal loan delinquency surged to a **High severity of 0.16 in Q2-2023**, likely reflecting broader consumer financial stress during that period.\n\nOverall, the Midwest delinquency picture is mixed \u2014 mortgage credit quality remains strong due to sound origination practices, but **consumer and commercial segments face elevated stress**, driven by rising interest rates, credit card balance accumulation, and tightening conditions for small businesses. No specific single root cause was identified in available documents, so a deeper investigation into macroeconomic drivers (e.g., employment trends, rate environment) may be warranted.",
+      "ground_truth": {
+        "key_facts": [
+          "Auto loan defaults driven by manufacturing sector unemployment",
+          "12% increase in auto loan defaults Q3-2023"
+        ],
+        "must_mention": [
+          "Midwest",
+          "auto loan"
+        ],
+        "forbidden": [
+          "attributing causes from other regions to Midwest"
+        ]
+      },
+      "latency_ms": 15364.201917000173,
+      "input_tokens": 2147,
+      "output_tokens": 495,
+      "total_tokens": 2642,
+      "loop_iterations": 2,
+      "notes": "Observed pre-expansion: search\u2192query. Causal question \u2014 RAG leads, SQL validates.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Midwest",
+            "present": true,
+            "evidence": "Midwest delinquencies \u2013 Executive Summary"
+          },
+          {
+            "fact": "auto loan",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "attributing causes from other regions to Midwest",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "Answer discusses Midwest delinquencies comprehensively but fails to mention auto loans as required.",
+        "id": "Q006",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q007",
+      "question": "Summarize the top loss regions and explain why",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "## \ud83c\udf0e Top Loss Regions \u2014 Executive Summary\n\n| Rank | Region | Total Loss |\n|------|-----------|------------|\n| 1 | **South** | USD 113.9M |\n| 2 | **Midwest** | USD 112.3M |\n| 3 | **Northeast** | USD 106.5M |\n| 4 | **West** | USD 81.8M |\n\n---\n\n### Key Findings\n\n1. **South (USD 113.9M \u2014 #1):** The South leads in total losses, likely driven by elevated exposure in small business and retail sector lending, which saw concentrated stress particularly in Q2-2024.\n\n2. **Midwest (USD 112.3M \u2014 #2):** Close behind the South, the Midwest also suffered significant small business loan losses concentrated in the retail sector during Q2-2024, suggesting a shared vulnerability to consumer-facing commercial credit stress.\n\n3. **Northeast (USD 106.5M \u2014 #3):** Losses in the Northeast are heavily tied to **commercial real estate (CRE)**, especially office and retail properties in urban markets that have not fully recovered post-pandemic \u2014 a structural, longer-term credit risk.\n\n4. **West (USD 81.8M \u2014 #4):** Despite broader economic headwinds, the West recorded the **lowest losses**, with personal loan losses contained at medium severity, indicating relatively stronger credit quality or better portfolio diversification.\n\n---\n\n> **Bottom Line:** The South and Midwest are driven by cyclical retail/small business stress, while the Northeast faces structural CRE headwinds. The West remains the most resilient region. Combined total exposure across all regions stands at **USD 414.5M**.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies top regions by total loss_amount",
+          "RAG explains narrative causes for those regions"
+        ],
+        "must_mention": [
+          "region",
+          "loss"
+        ],
+        "forbidden": [
+          "fabricating causes not present in narratives"
+        ]
+      },
+      "latency_ms": 14843.855082996015,
+      "input_tokens": 1856,
+      "output_tokens": 513,
+      "total_tokens": 2369,
+      "loop_iterations": 2,
+      "notes": "Observed: query\u2192search. Fixed \u2014 ranking must precede explanation.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "South, Midwest, Northeast, West regions are explicitly mentioned and analyzed"
+          },
+          {
+            "fact": "loss",
+            "present": true,
+            "evidence": "Total Loss amounts provided for each region (USD 113.9M, 112.3M, 106.5M, 81.8M)"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "fabricating causes not present in narratives",
+            "detected": true,
+            "evidence": "Claims about 'small business and retail sector lending stress in Q2-2024' and 'commercial real estate office and retail properties post-pandemic' appear to be fabricated explanations"
+          }
+        ],
+        "score": 0.5,
+        "reason_code": "FORBIDDEN_DETECTED",
+        "summary": "Answer correctly identifies regions and losses but includes fabricated explanatory details not supported by source data.",
+        "id": "Q007",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q008",
+      "question": "What percentage of losses are High severity?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 2]",
+      "final_answer": "**High Severity Losses \u2014 Summary**\n\n**24%** of all recorded losses are classified as **High severity**.\n\nThis means roughly 1 in 4 loss events fall into the highest risk category, which warrants close attention from a credit risk perspective. It would be advisable to further analyze these High severity losses by segment, region, or time period to identify concentration risks and prioritize mitigation strategies. Would you like a deeper dive into any of those dimensions?",
+      "ground_truth": {
+        "key_facts": [
+          "COUNT where severity=High divided by total COUNT"
+        ],
+        "must_mention": [
+          "High severity",
+          "percentage"
+        ],
+        "forbidden": [
+          "Medium or Low severity figures unless comparison requested"
+        ]
+      },
+      "latency_ms": 7068.57425000635,
+      "input_tokens": 1645,
+      "output_tokens": 163,
+      "total_tokens": 1808,
+      "loop_iterations": 1,
+      "notes": "Percentage aggregation \u2014 SQL only. Confirmed clean.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "High severity",
+            "present": true,
+            "evidence": "High severity losses"
+          },
+          {
+            "fact": "percentage",
+            "present": true,
+            "evidence": "24% of all recorded losses"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "Medium or Low severity figures unless comparison requested",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly provides the High severity percentage without mentioning other severity levels.",
+        "id": "Q008",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q009",
+      "question": "What do the documents say about mortgage performance?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "search_documents"
+      ],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "## Mortgage Performance \u2014 Document Summary\n\nBased on the narrative documents, here are the key findings on mortgage performance:\n\n---\n\n### \ud83d\udcc9 Deteriorating Trends (2024)\n- **Northeast (Q4-2024):** Performance deteriorated as **property tax increases compressed borrower cash flows**, reducing borrowers' ability to service their mortgages.\n- **National (Q1-2024):** Mortgage delinquencies **rose 5% across all regions**, driven by **sustained high interest rates** that cut off refinancing options for struggling borrowers.\n\n---\n\n### \u2705 Stable Performance\n- **Midwest (2023):** Delinquency rates remained **low**, supported by **stable housing demand** and **conservative underwriting standards** \u2014 a relative bright spot in the portfolio.\n\n---\n\n### \ud83d\udd0d Executive Summary\nMortgage performance showed notable stress in 2024, with a **5% rise in delinquencies nationally in Q1** attributable to a prolonged high-interest-rate environment limiting borrower flexibility. The Northeast faced additional headwinds in Q4-2024 from rising property tax burdens squeezing cash flows. In contrast, the Midwest demonstrated resilience through 2023, benefiting from disciplined underwriting and steady local housing demand. Overall, the trend points to **mounting credit risk in rate-sensitive mortgage segments**, particularly in higher-cost regions.",
+      "ground_truth": {
+        "key_facts": [
+          "Mortgage delinquencies up 5% in high interest rate environment",
+          "Northeast mortgage deterioration in Q4-2024",
+          "Midwest mortgage delinquency remained Low through 2023"
+        ],
+        "must_mention": [
+          "mortgage",
+          "interest rate"
+        ],
+        "forbidden": [
+          "SQL figures unless narrative references them"
+        ]
+      },
+      "latency_ms": 9723.942207994696,
+      "input_tokens": 1712,
+      "output_tokens": 369,
+      "total_tokens": 2081,
+      "loop_iterations": 1,
+      "notes": "Explicit document question \u2014 RAG only. SQL firing = false positive.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "mortgage",
+            "present": true,
+            "evidence": "mortgage performance, mortgage delinquencies, Mortgage Performance"
+          },
+          {
+            "fact": "interest rate",
+            "present": true,
+            "evidence": "sustained high interest rates, prolonged high-interest-rate environment"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "SQL figures unless narrative references them",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer successfully covers required mortgage and interest rate topics without including forbidden SQL figures.",
+        "id": "Q009",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q010",
+      "question": "Which quarter had the worst overall delinquency and what drove it?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "high",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "search_documents",
+        "search_documents",
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [3, 5]",
+      "final_answer": "Here is the full executive summary:\n\n---\n\n## \ud83d\udcca Worst Quarter for Delinquency: **Q3-2024**\n\n**Q3-2024 recorded the highest average delinquency rate at 14.1%** \u2014 significantly above the next worst quarter (Q4-2024 at 10.3%) \u2014 despite having the lowest total loss amount of USD 33.5M, suggesting a concentrated delinquency problem rather than broad-based volume exposure.\n\n**Credit Cards were the primary driver**, with delinquency rates reaching an alarming **24% in the Northeast** and **23% in the West** \u2014 the two highest product-region combinations across the entire dataset. Personal Loans in the Midwest also contributed meaningfully at **18%**, while Small Business Loans in the Midwest showed stress at **13%**.\n\nThe narrative context points to **elevated consumer debt levels** (particularly among the 25\u201334 age group), **sustained high interest rates limiting refinancing options**, and **sub-prime auto originations from 2022** rippling through into 2024 performance \u2014 all compounding delinquency pressure across retail credit products.\n\n**Key risk concentration: the Northeast and West regions in Credit Cards**, and the **Midwest across Personal and Small Business Loans**, should be prioritized for enhanced monitoring, collections strategy review, and tightened underwriting standards going forward.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies quarter with highest avg delinquency_rate",
+          "RAG provides multi-angle narrative: causes, sectors, regions"
+        ],
+        "must_mention": [
+          "quarter",
+          "delinquency"
+        ],
+        "forbidden": [
+          "stating a quarter without SQL evidence"
+        ]
+      },
+      "latency_ms": 26012.679500003287,
+      "input_tokens": 6729,
+      "output_tokens": 675,
+      "total_tokens": 7404,
+      "loop_iterations": 5,
+      "notes": "Observed: query\u2192search\u2192search\u2192search\u2192query. Multi-hop investigative. min_tool_calls=3 allows for simpler valid responses.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "quarter",
+            "present": true,
+            "evidence": "Q3-2024 recorded the highest average delinquency rate"
+          },
+          {
+            "fact": "delinquency",
+            "present": true,
+            "evidence": "highest average delinquency rate at 14.1%"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "stating a quarter without SQL evidence",
+            "detected": true,
+            "evidence": "Q3-2024 recorded the highest average delinquency rate at 14.1%"
+          }
+        ],
+        "score": 0.5,
+        "reason_code": "FORBIDDEN_DETECTED",
+        "summary": "Answer mentions required topics but states specific quarter conclusions without showing SQL evidence.",
+        "id": "Q010",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q011",
+      "question": "What is the average delinquency rate for Auto Loans across all quarters?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "## Average Delinquency Rate \u2013 Auto Loans\n\nThe average delinquency rate for **Auto Loans across all quarters is approximately **9.94%**.\n\nThis figure reflects the mean share of Auto Loan accounts that have fallen past due over the entire observed period. A rate approaching 10% warrants close monitoring, as it may signal elevated credit risk within the auto lending portfolio. Further segmentation by quarter, borrower profile, or region could help identify whether this rate is trending upward or driven by specific sub-segments.",
+      "ground_truth": {
+        "key_facts": [
+          "AVG(delinquency_rate) where product = Auto Loan"
+        ],
+        "must_mention": [
+          "Auto Loan",
+          "average",
+          "delinquency"
+        ],
+        "forbidden": [
+          "mixing in other product types"
+        ]
+      },
+      "latency_ms": 6960.955541995645,
+      "input_tokens": 1682,
+      "output_tokens": 186,
+      "total_tokens": 1868,
+      "loop_iterations": 1,
+      "notes": "Simple AVG aggregation with WHERE filter. Clean SQL-only baseline.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Auto Loan",
+            "present": true,
+            "evidence": "Auto Loans across all quarters"
+          },
+          {
+            "fact": "average",
+            "present": true,
+            "evidence": "average delinquency rate"
+          },
+          {
+            "fact": "delinquency",
+            "present": true,
+            "evidence": "delinquency rate"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "mixing in other product types",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts are present and no forbidden content was detected.",
+        "id": "Q011",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q012",
+      "question": "Which product had the highest loss amount in Q1-2024?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "**Commercial RE** recorded the highest loss amount in Q1-2024, with a total loss of **USD 28.1M**. This product significantly outpaced others in the same period, signaling elevated credit risk exposure in the Commercial Real Estate segment. A deeper dive into underlying causes \u2014 such as borrower defaults, collateral devaluation, or sector-wide stress \u2014 may be warranted to assess future risk.",
+      "ground_truth": {
+        "key_facts": [
+          "MAX(loss_amount) filtered to Q1-2024, grouped by product"
+        ],
+        "must_mention": [
+          "Q1-2024",
+          "product"
+        ],
+        "forbidden": [
+          "answers from other quarters"
+        ]
+      },
+      "latency_ms": 6757.436540996423,
+      "input_tokens": 1687,
+      "output_tokens": 180,
+      "total_tokens": 1867,
+      "loop_iterations": 1,
+      "notes": "Quarter-filtered ranking. SQL only \u2014 no narrative requested.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Q1-2024",
+            "present": true,
+            "evidence": "Q1-2024"
+          },
+          {
+            "fact": "product",
+            "present": true,
+            "evidence": "Commercial RE recorded the highest loss amount"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "answers from other quarters",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies Commercial RE as the highest loss product in Q1-2024 with all required facts present and no forbidden content.",
+        "id": "Q012",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q013",
+      "question": "How many High severity records exist per region?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "Here's a breakdown of **High Severity** records by region:\n\n| Region | High Severity Count |\n|-----------|-------------------|\n| Northeast | 2 |\n| Midwest | 1 |\n| South | 0 |\n| West | 0 |\n\n**Executive Summary:**\nOut of the four regions, only the **Northeast** and **Midwest** have recorded High severity losses, with **2** and **1** records respectively. The **South** and **West** regions currently report **zero** High severity incidents, suggesting either lower risk exposure or more effective risk mitigation in those areas. The concentration of High severity cases in the Northeast warrants closer monitoring and potential targeted risk controls in that region.",
+      "ground_truth": {
+        "key_facts": [
+          "COUNT grouped by region where severity = High"
+        ],
+        "must_mention": [
+          "High severity",
+          "region",
+          "count"
+        ],
+        "forbidden": [
+          "Medium or Low counts unless volunteered as context"
+        ]
+      },
+      "latency_ms": 6862.977875003708,
+      "input_tokens": 1689,
+      "output_tokens": 240,
+      "total_tokens": 1929,
+      "loop_iterations": 1,
+      "notes": "COUNT with GROUP BY and WHERE filter. Tests SQL rule #2 compliance.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "High severity",
+            "present": true,
+            "evidence": "High Severity records by region"
+          },
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "breakdown of High Severity records by region"
+          },
+          {
+            "fact": "count",
+            "present": true,
+            "evidence": "High Severity Count column with numerical values"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "Medium or Low counts unless volunteered as context",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly provides High severity counts by region without mentioning Medium or Low severity data.",
+        "id": "Q013",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q014",
+      "question": "Show the trend in total losses by quarter from 2023 to 2024",
+      "query_type": "sql_only",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 2]",
+      "final_answer": "Here is the full quarterly breakdown and trend analysis:\n\n---\n\n### \ud83d\udcca Total Losses by Quarter \u2014 2023 vs. 2024\n\n| Quarter | 2023 | 2024 | YoY Change |\n|---------|------|------|------------|\n| **Q1** | USD 60.4M | USD 56.4M | \ud83d\udd3d -6.6% |\n| **Q2** | USD 51.6M | USD 55.3M | \ud83d\udd3c +7.2% |\n| **Q3** | USD 59.3M | USD 33.5M | \ud83d\udd3d -43.5% |\n| **Q4** | USD 52.4M | USD 45.6M | \ud83d\udd3d -13.0% |\n| **Full Year** | **USD 223.7M** | **USD 190.8M** | \ud83d\udd3d **-14.7%** |\n\n---\n\n### \ud83d\udcdd Executive Summary\n\nTotal credit losses declined significantly from **USD 223.7M in 2023** to **USD 190.8M in 2024**, representing a **14.7% year-over-year improvement**. The most dramatic reduction occurred in **Q3 2024**, which saw losses drop by **43.5%** compared to Q3 2023 (from USD 59.3M to USD 33.5M), suggesting a meaningful improvement in portfolio risk management or economic conditions mid-year. The only quarter where losses increased year-over-year was **Q2 2024** (+7.2%), indicating a brief deterioration during that period. Overall, the downward trend in losses across 2024 reflects a broadly improving credit risk environment, though the Q2 uptick warrants continued monitoring.",
+      "ground_truth": {
+        "key_facts": [
+          "SUM(loss_amount) grouped by quarter",
+          "Ordered Q1-2023 through Q4-2024"
+        ],
+        "must_mention": [
+          "quarter",
+          "trend",
+          "2023",
+          "2024"
+        ],
+        "forbidden": [
+          "regional breakdown unless volunteered"
+        ]
+      },
+      "latency_ms": 12080.761082994286,
+      "input_tokens": 1769,
+      "output_tokens": 509,
+      "total_tokens": 2278,
+      "loop_iterations": 1,
+      "notes": "Observed: query only. Trend questions interpreted as purely quantitative \u2014 RAG not sought. variance: none confirmed from single run, re-verify if behavior changes.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "quarter",
+            "present": true,
+            "evidence": "Total Losses by Quarter"
+          },
+          {
+            "fact": "trend",
+            "present": true,
+            "evidence": "trend analysis"
+          },
+          {
+            "fact": "2023",
+            "present": true,
+            "evidence": "2023 vs. 2024"
+          },
+          {
+            "fact": "2024",
+            "present": true,
+            "evidence": "2023 vs. 2024"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "regional breakdown unless volunteered",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts are present and no forbidden content was detected.",
+        "id": "Q014",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q015",
+      "question": "What do the documents say about commercial real estate risks?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "search_documents"
+      ],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "## Commercial Real Estate Risk \u2014 Document Summary\n\nHere is what the documents reveal about commercial real estate (CRE) risks:\n\n---\n\n### \ud83c\udfd9\ufe0f Geographic Concentration\n- **Northeast urban markets** are the primary area of concern, with losses heavily concentrated in office and retail properties, largely as a result of **post-pandemic structural shifts** in usage patterns.\n- **Western markets** also face challenges, particularly due to **depressed office property valuations** that have constrained recovery efforts as of Q3-2024.\n\n### \ud83c\udfe2 Office Sector Vulnerability\n- **Office vacancy rates exceed 20%** in major metropolitan areas across the Northeast, signaling persistent oversupply and weak demand \u2014 a key driver of elevated credit exposure.\n\n### \ud83d\udcc9 Recovery Limitations\n- CRE recoveries in the West have been **limited**, suggesting that collateral values supporting these loans may not be sufficient to offset losses in distressed scenarios.\n\n---\n\n### Executive Summary\nCommercial real estate risk remains a significant concern, particularly in **office and retail segments** across Northeast and Western U.S. markets. Post-pandemic behavioral shifts have driven **office vacancy rates above 20%** in major metro areas, suppressing property valuations and increasing loss exposure. Recovery rates are constrained by depressed asset values, especially in Western markets as of Q3-2024. Overall, CRE portfolios in urban, office-heavy geographies warrant **heightened monitoring and conservative provisioning** given the structural nature of these headwinds.",
+      "ground_truth": {
+        "key_facts": [
+          "Commercial RE losses concentrated in urban markets",
+          "Office vacancy rates above 20% in major metro areas",
+          "Northeast exposure elevated post-pandemic"
+        ],
+        "must_mention": [
+          "commercial real estate",
+          "urban"
+        ],
+        "forbidden": [
+          "SQL figures unless narrative references them"
+        ]
+      },
+      "latency_ms": 13422.68279199925,
+      "input_tokens": 1703,
+      "output_tokens": 390,
+      "total_tokens": 2093,
+      "loop_iterations": 1,
+      "notes": "Explicit document question. RAG only \u2014 mirrors Q009 pattern for Commercial RE.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "commercial real estate",
+            "present": true,
+            "evidence": "Commercial real estate (CRE) risks"
+          },
+          {
+            "fact": "urban",
+            "present": true,
+            "evidence": "Northeast urban markets"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "SQL figures unless narrative references them",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer successfully mentions commercial real estate and urban markets without including any SQL figures.",
+        "id": "Q015",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q016",
+      "question": "What are the narratives around credit card delinquencies?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "search_documents"
+      ],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "Here is a summary of the key narratives around credit card delinquencies:\n\n**Executive Summary:**\n\nCredit card delinquencies have emerged as one of the **highest-risk product categories** in the overall portfolio, alongside Commercial Real Estate, across all regions and time periods. A particularly notable spike was observed in **Q4-2023**, driven largely by the **25\u201334 age group**, which faced heightened pressure from elevated consumer debt levels. Broader consumer delinquency trends, including personal loans, peaked in **Q3-2023** before stabilizing as consumer spending slowed, suggesting credit cards may follow a similar trajectory. The concentration of risk in younger borrowers signals potential structural vulnerability in the credit card segment. Portfolio managers should monitor this cohort closely, particularly as interest rates remain elevated and disposable income remains under pressure.",
+      "ground_truth": {
+        "key_facts": [
+          "Delinquencies rose among 25-34 age group",
+          "South reached High severity in Q3-2024",
+          "Midwest moderated in Q1-2024 after collections activity"
+        ],
+        "must_mention": [
+          "credit card",
+          "delinquency"
+        ],
+        "forbidden": [
+          "SQL figures not referenced in narratives"
+        ]
+      },
+      "latency_ms": 7467.91949999897,
+      "input_tokens": 1727,
+      "output_tokens": 241,
+      "total_tokens": 1968,
+      "loop_iterations": 1,
+      "notes": "Narrative-only. Tests RAG retrieval relevance across multiple narrative entries.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "credit card",
+            "present": true,
+            "evidence": "Credit card delinquencies have emerged"
+          },
+          {
+            "fact": "delinquency",
+            "present": true,
+            "evidence": "Credit card delinquencies have emerged"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "SQL figures not referenced in narratives",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts are present and no forbidden content was detected.",
+        "id": "Q016",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q017",
+      "question": "What regional factors explain personal loan defaults?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "search_documents",
+        "query_database"
+      ],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 2]",
+      "final_answer": "## Executive Summary: Regional Drivers of Personal Loan Defaults\n\nRegional default patterns reveal meaningful variation across the U.S., shaped by distinct economic and structural forces:\n\n1. **West leads in delinquency rate (15.5%)** despite a relatively contained loss of USD 3.4M, suggesting a higher volume of smaller-balance loans at risk \u2014 likely tied to elevated cost-of-living burdens and housing affordability pressures in that region.\n\n2. **Northeast carries the highest total loss exposure at USD 5.4M** (delinquency rate: 14.25%), though access to SBA relief programs has helped temper small business-linked spillover effects into personal lending; conditions appear to be stabilizing.\n\n3. **Midwest posted a 12% surge in defaults** (total losses: USD 8.2M \u2014 the highest of all regions), strongly correlated with rising unemployment in manufacturing sectors, which has directly eroded borrowers' repayment capacity.\n\n4. **The South shows the lowest delinquency rate (10.3%)**, but an 8% year-over-year increase in personal loan defaults signals growing pressure from declining disposable income and cost-of-living inflation, warranting early monitoring before losses escalate.\n\n**Bottom line:** Macroeconomic stressors \u2014 unemployment in the Midwest, cost-of-living in the South and West, and structural lending exposure in the Northeast \u2014 are the primary regional drivers of personal loan defaults. Risk mitigation strategies should be region-specific, prioritizing employment-linked underwriting in the Midwest and affordability-adjusted stress testing in the West and South.",
+      "ground_truth": {
+        "key_facts": [
+          "Southern region defaults increased 8% due to declining disposable income",
+          "West personal loans contained at Medium severity in Q2-2024",
+          "Personal loan delinquencies peaked Q3-2023 then stabilized"
+        ],
+        "must_mention": [
+          "personal loan",
+          "region"
+        ],
+        "forbidden": [
+          "auto loan or mortgage causes attributed to personal loans"
+        ]
+      },
+      "latency_ms": 14746.093708999979,
+      "input_tokens": 1907,
+      "output_tokens": 497,
+      "total_tokens": 2404,
+      "loop_iterations": 2,
+      "notes": "Regional causal narrative \u2014 RAG only. Tests cross-product retrieval accuracy.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "personal loan",
+            "present": true,
+            "evidence": "personal loan defaults, personal lending, personal loan defaults"
+          },
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "Regional default patterns, West, Northeast, Midwest, South"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "auto loan or mortgage causes attributed to personal loans",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts about personal loans and regions are present, and no forbidden content was detected.",
+        "id": "Q017",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q018",
+      "question": "What sectors are driving small business loan losses?",
+      "query_type": "rag_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "search_documents"
+      ],
+      "tool_score": 0.5,
+      "tool_score_reason": "right tools, count above observed range (got 4, max 2)",
+      "final_answer": "Here is a comprehensive executive summary based on both quantitative and qualitative findings:\n\n---\n\n## \ud83d\udcca Small Business Loan Loss Analysis \u2014 Sector & Regional Drivers\n\n### Key Sector Drivers:\n| Sector | Region | Key Period |\n|---|---|---|\n| **Retail** | Midwest & South | Q2-2024 |\n| **Hospitality & Food Service** | West | 2023\u20132024 |\n| **Broad Stress** | Northeast | Q1-2023, Q4-2023 |\n\n---\n\n### Executive Summary\n\nThe **Northeast** is the single largest source of small business loan losses, totaling **USD 18.1M** across the review period, though losses there showed meaningful improvement in Q4-2023 following expanded access to SBA relief programs. The **Midwest** (USD 14.5M) and **West** (USD 10.2M) represent the next most significant concentrations, with the West's losses heavily driven by stress in the **hospitality and food service sectors** \u2014 industries that remain structurally challenged post-pandemic amid elevated labor and input costs. The **retail sector** is a primary driver in the **Midwest and South**, reflecting ongoing pressure from e-commerce competition and weakening consumer discretionary spending, particularly evident in Q2-2024. Overall, peak quarterly losses occurred in **Q1-2023**, suggesting the loss cycle may be moderating, though the South's spike in **Q3-2024** (USD 4.7M) warrants close monitoring as a potential re-acceleration signal.",
+      "ground_truth": {
+        "key_facts": [
+          "Retail sector primary driver",
+          "Hospitality and food service in West",
+          "Concentrated in Midwest and South"
+        ],
+        "must_mention": [
+          "retail",
+          "small business"
+        ],
+        "forbidden": [
+          "Commercial RE sector causes attributed to small business loans"
+        ]
+      },
+      "latency_ms": 20110.34537499654,
+      "input_tokens": 3552,
+      "output_tokens": 639,
+      "total_tokens": 4191,
+      "loop_iterations": 4,
+      "notes": "Sector-level narrative \u2014 RAG only. Tests specificity of retrieval.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "retail",
+            "present": true,
+            "evidence": "The retail sector is a primary driver in the Midwest and South"
+          },
+          {
+            "fact": "small business",
+            "present": true,
+            "evidence": "Small Business Loan Loss Analysis \u2014 Sector & Regional Drivers"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "Commercial RE sector causes attributed to small business loans",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies retail as a key sector driver and focuses on small business loans without mentioning commercial RE attribution.",
+        "id": "Q018",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q019",
+      "question": "Which product has the worst delinquency rate and what does the narrative say?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "## Delinquency Analysis: Worst Performing Product\n\n### \ud83d\udcca Quantitative Finding\n**Credit Card** holds the highest average delinquency rate in the portfolio at **17.94%**, making it the most delinquency-prone product.\n\n### \ud83d\udccb Narrative Insights\nThe documents highlight several key drivers:\n\n- **High-Risk Classification:** Credit Cards are consistently flagged alongside **Commercial Real Estate** as the **highest-risk products** across all regions and time periods.\n- **Demographic Surge:** Credit card delinquencies **rose sharply among the 25\u201334 age group in Q4-2023**, driven by **elevated consumer debt levels** \u2014 suggesting affordability stress in younger borrowers.\n- **Broader Portfolio Context:** While Credit Cards lead in delinquency, **Auto Loans in the South** are also trending upward through 2024, linked to **sub-prime originations from 2022**, signaling emerging risk in adjacent products.\n\n---\n\n### \ud83d\udd0d Executive Summary\nCredit Cards represent the most acute delinquency risk in the portfolio, with an average rate of **17.94%**, well above other product categories. The narrative points to a combination of **rising consumer indebtedness** and **demographic concentration risk** among younger borrowers (25\u201334) as the primary drivers, particularly evident in Q4-2023. Management should consider tightening underwriting standards for credit card originations and implementing targeted collection strategies for the affected age segment. The upward trend in Auto Loan delinquencies also warrants close monitoring as a secondary concern.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies product with MAX(AVG(delinquency_rate))",
+          "RAG provides narrative context for that specific product"
+        ],
+        "must_mention": [
+          "delinquency rate",
+          "product"
+        ],
+        "forbidden": [
+          "narrative for wrong product"
+        ]
+      },
+      "latency_ms": 13272.116834006738,
+      "input_tokens": 1873,
+      "output_tokens": 483,
+      "total_tokens": 2356,
+      "loop_iterations": 2,
+      "notes": "Original P4 demo query. Post-expansion observed: query\u2192search (was query\u2192search\u2192search pre-expansion). Retrieval density effect documented.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "delinquency rate",
+            "present": true,
+            "evidence": "highest average delinquency rate in the portfolio at 17.94%"
+          },
+          {
+            "fact": "product",
+            "present": true,
+            "evidence": "Credit Card holds the highest average delinquency rate"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "narrative for wrong product",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies Credit Card as the worst performing product with specific delinquency rate and provides relevant narrative insights.",
+        "id": "Q019",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q020",
+      "question": "Which region has the highest Commercial RE exposure and what are the risks?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "## Regional Commercial Real Estate Exposure & Risk Analysis\n\n### \ud83d\udccd Highest Exposure Region: **South**\n| Metric | Detail |\n|---|---|\n| **Region** | South |\n| **Total CRE Exposure (Losses)** | **USD 52.4M** |\n\n---\n\n### \u26a0\ufe0f Key Risk Factors Across Regions\n\n| Risk Theme | Detail |\n|---|---|\n| **Office Vacancy Rates** | Northeast office vacancy rates exceed **20%** in major metro areas, signaling structural demand shifts post-pandemic |\n| **Urban Market Concentration** | CRE losses are heavily concentrated in urban office and retail properties, particularly in the Northeast |\n| **Depressed Valuations** | Western markets are experiencing suppressed office property valuations, with limited recovery prospects as of Q3-2024 |\n\n---\n\n### \ud83e\udded Executive Summary\n\nThe **South region** carries the highest Commercial Real Estate exposure at **USD 52.4M**, making it the primary area of concentration risk. Across all regions, the post-pandemic structural shift away from office space is a dominant theme, with Northeast vacancy rates exceeding 20% and Western markets suffering from depressed property valuations. Urban retail and office segments remain the most vulnerable asset classes, with limited recovery signals. Risk managers should closely monitor refinancing risk, tenant default rates, and collateral devaluation trends, particularly in office-heavy portfolios across all regions.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies region with highest Commercial RE loss_amount",
+          "RAG provides office vacancy, urban concentration context"
+        ],
+        "must_mention": [
+          "Commercial RE",
+          "region"
+        ],
+        "forbidden": [
+          "confusing Commercial RE with Small Business Loan risks"
+        ]
+      },
+      "latency_ms": 12419.179917000292,
+      "input_tokens": 1838,
+      "output_tokens": 450,
+      "total_tokens": 2288,
+      "loop_iterations": 2,
+      "notes": "Verify: product name must match exact schema string 'Commercial RE' in generated SQL.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Commercial RE",
+            "present": true,
+            "evidence": "Commercial Real Estate exposure"
+          },
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "Highest Exposure Region: **South**"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "confusing Commercial RE with Small Business Loan risks",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies Commercial RE exposure by region with no forbidden content detected.",
+        "id": "Q020",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q021",
+      "question": "How has the Midwest portfolio evolved from 2023 to 2024?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 0.5,
+      "tool_score_reason": "right tools, count above observed range (got 4, max 3)",
+      "final_answer": "Here is a comprehensive executive summary of the Midwest portfolio's evolution from 2023 to 2024:\n\n---\n\n## \ud83d\udcca Midwest Portfolio Evolution: 2023 vs. 2024\n\n### Quantitative Snapshot\n\n| Metric | 2023 | 2024 |\n|---|---|---|\n| **Total Losses** | USD 83.8M | USD 28.5M |\n| **Average Loss per Claim** | USD 4.9M | USD 2.9M |\n\n---\n\n### Key Findings\n\n1. **Dramatic Loss Reduction (~66% decline):** Total Midwest losses fell sharply from USD 83.8M in 2023 to USD 28.5M in 2024, signaling a meaningful improvement in overall portfolio credit quality.\n\n2. **Commercial RE was the dominant 2023 risk driver:** Commercial Real Estate losses alone accounted for USD 37.0M in 2023 (across Q1\u2013Q3), making it the single largest loss contributor. By 2024, Commercial RE losses dropped to just USD 5.8M in Q1, with no further losses recorded \u2014 a significant de-risking of this segment.\n\n3. **Credit Card losses nearly eliminated:** Credit Card losses fell from USD 4.0M in Q1-2023 to just USD 0.7M in Q2-2024, supported by aggressive collections activity and borrower balance paydowns across the Midwest.\n\n4. **Mortgage losses showed resilience and modest re-emergence:** Mortgage losses were broadly stable in 2023 (USD 21.5M total) but saw a notable Q2-2024 spike to USD 7.7M, warranting monitoring despite previously low delinquency rates driven by conservative underwriting and stable housing demand.\n\n5. **Auto Loan and Personal Loan risks remain contained but persistent:** Both products carried moderate losses across both years, with Auto Loans trending downward through 2024 (from USD 4.2M in Q3-2023 to USD 1.2M in Q4-2024), while Personal Loans showed a slight uptick in Q3-2024 to USD 2.2M.\n\n---\n\n### Bottom Line\nThe Midwest portfolio has **materially improved** from 2023 to 2024, primarily driven by the near-elimination of Commercial RE and Credit Card losses. However, the **re-emergence of Mortgage losses in Q2-2024** and the **persistence of Personal Loan delinquencies** are areas that merit continued credit surveillance heading into the rest of 2024.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL shows Midwest loss_amount and delinquency_rate by quarter 2023-2024",
+          "RAG provides auto loan and mortgage narrative for Midwest"
+        ],
+        "must_mention": [
+          "Midwest",
+          "2023",
+          "2024"
+        ],
+        "forbidden": [
+          "conflating Midwest trends with other regions"
+        ]
+      },
+      "latency_ms": 26596.300500001234,
+      "input_tokens": 3608,
+      "output_tokens": 885,
+      "total_tokens": 4493,
+      "loop_iterations": 4,
+      "notes": "Time-series hybrid. Verify sequence \u2014 SQL must anchor the trend before narrative explains it.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Midwest",
+            "present": true,
+            "evidence": "Midwest Portfolio Evolution: 2023 vs. 2024"
+          },
+          {
+            "fact": "2023",
+            "present": true,
+            "evidence": "Total Midwest losses fell sharply from USD 83.8M in 2023"
+          },
+          {
+            "fact": "2024",
+            "present": true,
+            "evidence": "to USD 28.5M in 2024"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "conflating Midwest trends with other regions",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts about Midwest evolution from 2023 to 2024 are present and no forbidden content detected.",
+        "id": "Q021",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q022",
+      "question": "What is the total loss for Mortgage products in the West?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "none",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 1]",
+      "final_answer": "### Total Loss \u2013 Mortgage Products | West Region\n\nThe total recorded loss for **Mortgage** products in the **West** region amounts to **USD 24.6M**.\n\n> **Note:** This figure represents the aggregate loss across all Mortgage product types within the West region. If you'd like a further breakdown by sub-product, time period, or a comparison against other regions, feel free to ask!",
+      "ground_truth": {
+        "key_facts": [
+          "SUM(loss_amount) where product=Mortgage AND region=West"
+        ],
+        "must_mention": [
+          "Mortgage",
+          "West",
+          "total"
+        ],
+        "forbidden": [
+          "including other regions or products"
+        ]
+      },
+      "latency_ms": 7067.784667000524,
+      "input_tokens": 1686,
+      "output_tokens": 175,
+      "total_tokens": 1861,
+      "loop_iterations": 1,
+      "notes": "Two-filter SQL. Tests AND condition generation.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Mortgage",
+            "present": true,
+            "evidence": "Mortgage products"
+          },
+          {
+            "fact": "West",
+            "present": true,
+            "evidence": "West region"
+          },
+          {
+            "fact": "total",
+            "present": true,
+            "evidence": "total recorded loss"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "including other regions or products",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts are present and no forbidden content detected.",
+        "id": "Q022",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q023",
+      "question": "Which region improved the most between 2023 and 2024?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [3, 4]",
+      "final_answer": "Here is the full regional breakdown and the executive summary:\n\n---\n\n### \ud83d\udcca Regional Loss Comparison: 2023 vs. 2024\n\n| Region | 2023 Losses | 2024 Losses | Change | % Change |\n|---|---|---|---|---|\n| **Midwest** | USD 83.8M | USD 28.5M | **\u25bc USD 55.3M** | **\u25bc 66.0%** |\n| West | USD 42.2M | USD 39.6M | \u25bc USD 2.6M | \u25bc 6.2% |\n| South | USD 48.3M | USD 65.6M | \u25b2 USD 17.3M | \u25b2 35.8% |\n| Northeast | USD 49.4M | USD 57.1M | \u25b2 USD 7.7M | \u25b2 15.6% |\n\n---\n\n### \ud83c\udfc6 Executive Summary\n\nThe **Midwest** was the standout improver, reducing total losses by **USD 55.3M (66%)** from USD 83.8M in 2023 to USD 28.5M in 2024 \u2014 by far the largest absolute and relative improvement across all regions. This turnaround was driven primarily by moderating credit card loss rates, supported by aggressive collections activity and borrower balance paydowns in early 2024. In contrast, the **South** and **Northeast** both deteriorated year-over-year, with the South seeing the sharpest increase of USD 17.3M (+35.8%), partially attributed to small business loan losses in the retail sector. The **West** remained relatively stable, posting only a modest USD 2.6M improvement.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL computes delinquency_rate change per region between years",
+          "RAG explains what drove improvement in the leading region"
+        ],
+        "must_mention": [
+          "improved",
+          "region",
+          "2023",
+          "2024"
+        ],
+        "forbidden": [
+          "declaring improvement without quantitative basis"
+        ]
+      },
+      "latency_ms": 16694.423916000233,
+      "input_tokens": 3051,
+      "output_tokens": 616,
+      "total_tokens": 3667,
+      "loop_iterations": 3,
+      "notes": "Comparative time-series \u2014 hardest SQL pattern. Verify Claude handles year comparison correctly.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "improved",
+            "present": true,
+            "evidence": "standout improver, reducing total losses"
+          },
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "Regional Loss Comparison"
+          },
+          {
+            "fact": "2023",
+            "present": true,
+            "evidence": "2023 vs. 2024"
+          },
+          {
+            "fact": "2024",
+            "present": true,
+            "evidence": "2023 vs. 2024"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "declaring improvement without quantitative basis",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required facts present with strong quantitative support and no forbidden content detected.",
+        "id": "Q023",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q024",
+      "question": "Are there any regions where severity worsened in 2024 compared to 2023?",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "high",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "query_database",
+        "search_documents",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [3, 5]",
+      "final_answer": "Here is the full picture:\n\n---\n\n## \ud83d\udcca Regional Severity Comparison: 2023 vs. 2024\n\n| Region | Avg Severity 2023 | Avg Severity 2024 | Change | Direction |\n|-----------|-------------------|-------------------|------------|-----------|\n| **South** | USD 3.7M | USD 5.5M | **+47.1%** | \ud83d\udd34 Worsened |\n| **West** | USD 3.2M | USD 5.0M | **+52.5%** | \ud83d\udd34 Worsened |\n| Northeast | USD 4.1M | USD 3.8M | -7.5% | \ud83d\udfe2 Improved |\n| Midwest | USD 4.9M | USD 2.9M | -42.1% | \ud83d\udfe2 Improved |\n\n---\n\n## \ud83d\udd0d Executive Summary\n\n**Two regions \u2014 the South and the West \u2014 experienced meaningful severity deterioration in 2024.** The South saw average loss severity surge by approximately 47%, rising from USD 3.7M to USD 5.5M, driven primarily by rising auto loan delinquencies tied to sub-prime originations from 2022 that are now aging into default. The West worsened by roughly 53%, from USD 3.2M to USD 5.0M, with losses concentrated in small business loans within the hospitality, food service, and retail sectors, compounded by broader economic headwinds. In contrast, the **Midwest and Northeast both improved**, with the Midwest showing the sharpest recovery (-42%), suggesting regional risk mitigation efforts or portfolio mix shifts may be taking effect. Credit risk monitoring should be prioritized in the **South and West**, particularly for auto and small business loan segments.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies regions with higher High severity count in 2024 vs 2023",
+          "RAG explains narrative drivers for deteriorating regions"
+        ],
+        "must_mention": [
+          "severity",
+          "2024",
+          "2023",
+          "region"
+        ],
+        "forbidden": [
+          "asserting worsening without SQL evidence"
+        ]
+      },
+      "latency_ms": 27029.03729100217,
+      "input_tokens": 5986,
+      "output_tokens": 791,
+      "total_tokens": 6777,
+      "loop_iterations": 5,
+      "notes": "Non-deterministic tool call count observed across 4 runs: [3,5,3,5]. Both are valid reasoning paths. Score on tool coverage and answer correctness, not exact call count.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "severity",
+            "present": true,
+            "evidence": "severity worsened in 2024"
+          },
+          {
+            "fact": "2024",
+            "present": true,
+            "evidence": "2024 compared to 2023"
+          },
+          {
+            "fact": "2023",
+            "present": true,
+            "evidence": "2023 vs. 2024"
+          },
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "Regional Severity Comparison"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "asserting worsening without SQL evidence",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies regions with worsened severity using data evidence and includes all required elements.",
+        "id": "Q024",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q025",
+      "question": "What is driving losses in the South?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "flexible",
+      "variance": "high",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "search_documents",
+        "search_documents",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [3, 5]",
+      "final_answer": "Here is a consolidated executive summary based on the quantitative and qualitative findings:\n\n---\n\n## \ud83d\udccd South Region \u2014 Loss Drivers Summary\n\n**Commercial Real Estate (USD 52.4M)** is the dominant loss category in the South, followed by **Mortgages (USD 26.7M)** and **Auto Loans (USD 16.7M)**, with smaller contributions from Small Business Loans (USD 8.2M), Credit Cards (USD 6.2M), and Personal Loans (USD 3.7M) \u2014 totaling **USD 114.0M** across all products.\n\nThe key qualitative drivers are:\n\n- **Auto Loan deterioration** is being driven by rising delinquency rates linked to a wave of **sub-prime originations from 2022**, which have seasoned poorly through 2024.\n- **Small Business Loan losses** are concentrated in the **retail sector**, reflecting continued stress among brick-and-mortar businesses in Q2-2024.\n- **Commercial Real Estate** remains the single largest loss source, likely reflecting broader post-pandemic structural pressures on office and retail property valuations, consistent with trends seen in other regions.\n\nOverall, the South's loss profile reflects a combination of **legacy underwriting risk** (auto sub-prime), **sector-specific stress** (retail small businesses), and **CRE valuation headwinds** \u2014 warranting close monitoring of CRE concentrations and auto loan vintages from 2021\u20132022.",
+      "ground_truth": {
+        "key_facts": [
+          "Credit card charge-offs High severity Q3-2024",
+          "Personal loan defaults up due to cost-of-living pressures",
+          "Auto loan delinquency linked to sub-prime originations"
+        ],
+        "must_mention": [
+          "South"
+        ],
+        "forbidden": [
+          "attributing Northeast or Midwest drivers to South"
+        ]
+      },
+      "latency_ms": 21708.41708300577,
+      "input_tokens": 4788,
+      "output_tokens": 663,
+      "total_tokens": 5451,
+      "loop_iterations": 5,
+      "notes": "Causal hybrid \u2014 flexible sequence. Claude may lead with RAG or SQL depending on interpretation.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "South",
+            "present": true,
+            "evidence": "South Region \u2014 Loss Drivers Summary"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "attributing Northeast or Midwest drivers to South",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly focuses on South region losses without attributing other regions' drivers.",
+        "id": "Q025",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q026",
+      "question": "What is the average loss amount by severity level?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 2]",
+      "final_answer": "## Average Loss Amount by Severity Level\n\nHere is a breakdown of the average loss amounts across all severity levels:\n\n| Severity Level | Average Loss Amount |\n|----------------|-------------------|\n| \ud83d\udd34 High | USD 2.4M |\n| \ud83d\udfe1 Medium | USD 4.4M |\n| \ud83d\udfe2 Low | USD 5.2M |\n\n---\n\n### Executive Summary\n\nInterestingly, the data reveals a **counter-intuitive inverse relationship** between severity level and average loss amount. \"Low\" severity incidents carry the highest average loss of **USD 5.2M**, followed by \"Medium\" at **USD 4.4M**, while \"High\" severity incidents have the lowest average loss at **USD 2.4M**. This suggests that severity classifications may be based on factors **other than pure financial impact**, such as frequency, operational disruption, or reputational risk. It would be worth investigating the underlying classification criteria to ensure severity labels are aligned with financial exposure for more effective risk prioritization.",
+      "ground_truth": {
+        "key_facts": [
+          "AVG(loss_amount) grouped by severity"
+        ],
+        "must_mention": [
+          "High",
+          "Medium",
+          "Low",
+          "average"
+        ],
+        "forbidden": [
+          "regional or product breakdown unless volunteered"
+        ]
+      },
+      "latency_ms": 7857.063124996785,
+      "input_tokens": 1681,
+      "output_tokens": 295,
+      "total_tokens": 1976,
+      "loop_iterations": 1,
+      "notes": "GROUP BY severity \u2014 tests all three severity values appear in output.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "High",
+            "present": true,
+            "evidence": "High | USD 2.4M"
+          },
+          {
+            "fact": "Medium",
+            "present": true,
+            "evidence": "Medium | USD 4.4M"
+          },
+          {
+            "fact": "Low",
+            "present": true,
+            "evidence": "Low | USD 5.2M"
+          },
+          {
+            "fact": "average",
+            "present": true,
+            "evidence": "average loss amounts across all severity levels"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "regional or product breakdown unless volunteered",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "All required severity levels and average calculation are mentioned, with no forbidden regional or product breakdowns detected.",
+        "id": "Q026",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q027",
+      "question": "Which products have delinquency rates above 15%?",
+      "query_type": "sql_only",
+      "difficulty": "easy",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "single",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [1, 2]",
+      "final_answer": "Based on the structured data, here is a concise executive summary:\n\n---\n\n**Executive Summary: Products with Delinquency Rates Above 15%**\n\nOnly **one product** currently exceeds the 15% delinquency threshold \u2014 **Credit Cards**, with an average delinquency rate of **17.94%**. This elevated rate signals meaningful credit stress within the credit card portfolio and warrants heightened monitoring. All other products in the portfolio appear to fall at or below the 15% benchmark. Immediate attention should be directed toward underwriting standards, collection strategies, and borrower risk segmentation within the credit card book to mitigate potential loss exposure.",
+      "ground_truth": {
+        "key_facts": [
+          "WHERE delinquency_rate > 0.15 \u2014 note schema stores as decimal not percent"
+        ],
+        "must_mention": [
+          "delinquency rate",
+          "15%"
+        ],
+        "forbidden": [
+          "using 15 instead of 0.15 in WHERE clause"
+        ]
+      },
+      "latency_ms": 9243.878750006843,
+      "input_tokens": 1685,
+      "output_tokens": 229,
+      "total_tokens": 1914,
+      "loop_iterations": 1,
+      "notes": "Critical test \u2014 delinquency_rate stored as 0.0-1.0 decimal. Claude must convert correctly.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "delinquency rate",
+            "present": true,
+            "evidence": "delinquency rates above 15%"
+          },
+          {
+            "fact": "15%",
+            "present": true,
+            "evidence": "15% delinquency threshold"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "using 15 instead of 0.15 in WHERE clause",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies products with delinquency rates above 15% and avoids forbidden technical details.",
+        "id": "Q027",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q028",
+      "question": "Give me a full risk summary of the Northeast portfolio",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "flexible",
+      "variance": "high",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "query_database",
+        "query_database",
+        "search_documents",
+        "search_documents",
+        "query_database"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [5, 8]",
+      "final_answer": "Unexpected stop reason: max_tokens",
+      "ground_truth": {
+        "key_facts": [
+          "SQL: total losses, avg delinquency, severity breakdown for Northeast",
+          "RAG: Commercial RE urban concentration, credit card trends, mortgage deterioration"
+        ],
+        "must_mention": [
+          "Northeast",
+          "Commercial RE"
+        ],
+        "forbidden": [
+          "summary that ignores either quantitative or qualitative dimension"
+        ]
+      },
+      "latency_ms": 40143.31091600616,
+      "input_tokens": 5915,
+      "output_tokens": 1474,
+      "total_tokens": 7389,
+      "loop_iterations": 7,
+      "notes": "Comprehensive portfolio summary \u2014 hardest hybrid. Both dimensions required for full credit.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "Northeast",
+            "present": false,
+            "evidence": "not found"
+          },
+          {
+            "fact": "Commercial RE",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "summary that ignores either quantitative or qualitative dimension",
+            "detected": true,
+            "evidence": "Unexpected stop reason: max_tokens"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "BOTH_FAIL",
+        "summary": "Answer failed to provide any content due to max_tokens limit, missing required mentions and effectively ignoring both dimensions.",
+        "id": "Q028",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q029",
+      "question": "Which quarter in 2024 had the highest credit card delinquency and what does the narrative say about it?",
+      "query_type": "hybrid",
+      "difficulty": "medium",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "low",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "within observed range [2, 3]",
+      "final_answer": "## Executive Summary: Credit Card Delinquency \u2013 2024\n\n**Q2-2024** recorded the highest credit card delinquency rate in 2024, with an average delinquency rate of **21%**. The narrative context highlights that credit cards are consistently one of the **highest-risk products** across all regions and periods, alongside Commercial Real Estate. Contributing factors include **elevated consumer debt levels** and **increased revolving balance utilization**, particularly noted among younger borrowers (aged 25\u201334). Additionally, the South region showed **high-severity charge-offs** in Q3-2024, suggesting that delinquency pressures persisted and even intensified in certain geographies in the latter half of the year.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL: MAX(delinquency_rate) for Credit Card in 2024 by quarter",
+          "RAG: credit card narrative references Q3-2024 South High severity"
+        ],
+        "must_mention": [
+          "credit card",
+          "2024",
+          "quarter"
+        ],
+        "forbidden": [
+          "citing 2023 quarters when 2024 is specified"
+        ]
+      },
+      "latency_ms": 10748.738458001753,
+      "input_tokens": 1905,
+      "output_tokens": 303,
+      "total_tokens": 2208,
+      "loop_iterations": 2,
+      "notes": "Product + year + quarter filter combination. Fixed sequence required.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "credit card",
+            "present": true,
+            "evidence": "credit card delinquency rate"
+          },
+          {
+            "fact": "2024",
+            "present": true,
+            "evidence": "Q2-2024 recorded the highest credit card delinquency rate in 2024"
+          },
+          {
+            "fact": "quarter",
+            "present": true,
+            "evidence": "Q2-2024 recorded the highest credit card delinquency rate"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "citing 2023 quarters when 2024 is specified",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 1.0,
+        "reason_code": "PASS",
+        "summary": "Answer correctly identifies Q2-2024 as having the highest credit card delinquency rate with supporting narrative details, mentioning all required facts and avoiding forbidden content.",
+        "id": "Q029",
+        "judge_error": null
+      }
+    },
+    {
+      "id": "Q030",
+      "question": "Build a complete risk narrative for the highest loss product across all regions and time periods",
+      "query_type": "hybrid",
+      "difficulty": "hard",
+      "reviewer_audience": [
+        "anthropic",
+        "credit_risk"
+      ],
+      "sequence": "fixed",
+      "variance": "high",
+      "success": true,
+      "error": null,
+      "observed_tools": [
+        "query_database",
+        "search_documents",
+        "query_database",
+        "query_database",
+        "search_documents",
+        "query_database",
+        "search_documents",
+        "search_documents"
+      ],
+      "expected_tools": [
+        "query_database",
+        "search_documents"
+      ],
+      "tool_score": 1.0,
+      "tool_score_reason": "high variance - extra calls acceptable",
+      "final_answer": "Max tool iterations reached. Partial answer may follow.",
+      "ground_truth": {
+        "key_facts": [
+          "SQL identifies highest loss product overall",
+          "SQL breakdown of that product by region",
+          "RAG provides full narrative context for that product"
+        ],
+        "must_mention": [
+          "highest loss",
+          "product",
+          "region",
+          "narrative"
+        ],
+        "forbidden": [
+          "building narrative before identifying product via SQL"
+        ]
+      },
+      "latency_ms": 23400.462792000326,
+      "input_tokens": 4201,
+      "output_tokens": 573,
+      "total_tokens": 4774,
+      "loop_iterations": 8,
+      "notes": "Capstone query \u2014 maximum complexity. Expects multi-hop: SQL identify \u2192 SQL breakdown \u2192 RAG explain. Portfolio screenshot candidate.",
+      "verify": false,
+      "answer_verdict": {
+        "must_mention_results": [
+          {
+            "fact": "highest loss",
+            "present": true,
+            "evidence": "highest loss product"
+          },
+          {
+            "fact": "product",
+            "present": true,
+            "evidence": "highest loss product"
+          },
+          {
+            "fact": "region",
+            "present": true,
+            "evidence": "across all regions"
+          },
+          {
+            "fact": "narrative",
+            "present": false,
+            "evidence": "not found"
+          }
+        ],
+        "forbidden_results": [
+          {
+            "item": "building narrative before identifying product via SQL",
+            "detected": false,
+            "evidence": "not found"
+          }
+        ],
+        "score": 0.0,
+        "reason_code": "MUST_MENTION_MISSING",
+        "summary": "Answer mentions highest loss product and regions but fails to provide the required narrative due to reaching max tool iterations.",
+        "id": "Q030",
+        "judge_error": null
+      }
+    }
+  ]
+}
